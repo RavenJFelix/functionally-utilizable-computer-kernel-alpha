@@ -6,7 +6,7 @@ print_string:
 	je exit
 	mov al, [bx] ; If not, move the character to al
 	int 0x10 ; Print chraracter
-	add byte bx, 1
+	add bx, 1
 	jmp .loop
 exit:
 	popa
