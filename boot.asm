@@ -1,13 +1,26 @@
-[org 0x7c00]
-mov bx, FUCK_MSG
-call print_string
+mov ah, 0x0e
+
+mov al, [the_secret]
+int 0x10
+
+mov bx, 0x7c0
+mov ds, bx
+mov al, [the_secret]
+int 0x10
+
+mov al, [es:the_secret]
+int 0x10
+
+mov bx, 0x7c0
+mov es, bx
+mov al, [es:the_secret]
+int 0x10
 
 jmp $
 
-%include "print_string.asm"
+the_secret:
+	db "X"
 
-FUCK_MSG:
-db 'FUCK O FUCK OH FUCK', 0
-;stuff
-times  510-($-$$) db 0
+times 510 - ($-$$) db 0
 dw 0xaa55
+
