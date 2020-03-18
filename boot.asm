@@ -20,13 +20,12 @@ jmp $
 BEGIN_PM:
 
 mov ebx, MSG_PROT_MODE
-call print_string_pm
 
 jmp $
 
 ; Messsage Variables
-MSG_REAL_MODE db "Started in 16-bit mode"
-MSG_PROT_MODE db "I AM IN 32 bits now ahhhhhahaha fuck yeah"
+MSG_REAL_MODE db "Started in 16-bit mode", 0
+MSG_PROT_MODE db "I AM IN 32 bits now ahhhhhahaha fuck yeah", 0 
 
 times 510 - ($-$$) db 0
 dw 0xaa55
