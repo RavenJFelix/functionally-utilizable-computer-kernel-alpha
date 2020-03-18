@@ -1,13 +1,15 @@
+DISK_ERROR_MSG: db "FUCK THE DISK READ BROKE", 0
+
 [org 0x7c00]
+  
   mov [BOOT_DRIVE], dl
 
-  mov bp, 0x8000
-  mov sp, bp    
-  
-  mov bx, 0xa000
-  mov es, bx
+  mov bp, 0x8000 ;
+  mov sp, bp     ;
+
   mov bx, 0x9000
-  mov dh, 2
+  mov dh, 5
+  mov dl, [BOOT_DRIVE]
 
   call disk_load
 
@@ -21,7 +23,6 @@
 
 %include "print_string.asm"
 %include "print_hex.asm"
-
  disk_load:
   push dx;push to stack so it can be recalled
   
@@ -29,15 +30,15 @@
   mov al, dh   ; Jump of sectors to read
   mov ch, 0x00 ; Cylinder 0
   mov dh, 0x00 ; Head 0
-  mov cl, 2  ; Second sector
+  mov cl, 0x02  ; Second sector
 
   int 0x13     ; BIOS interrupt
 
-  jc disk_error ;Check for carry flag
+  jc disk_error;Check for carry flag
   
   pop dx
-  ;cmp dh, al ; See if the number of sectors read are equal
-  ;jne disk_error
+  cmp dh, al ; See if the number of sectors read are equal
+  jne disk_error
   ret
 
 disk_error:
@@ -46,7 +47,6 @@ disk_error:
   jmp $
 
  
-DISK_ERROR_MSG: db "FUCK THE DISK READ BROKE", 0
 
 BOOT_DRIVE: db 0
 
