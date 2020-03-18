@@ -8,7 +8,11 @@ kernel.bin : kernel_entry.o kernel.o
 
 kernel_entry.o : kernel_entry.asm
 	nasm $< -f elf -o $@
+os-image: boot_sect.bin kernel.bin
+	cat $^ > $@
 
+boot_sect.bin : boot_sect.asm
+	nasm $< -f bin -o
 clean:
 	rm *.o
 
