@@ -3,6 +3,7 @@
 #include "pair2d.h"
 void fb_write_char_pos(struct uc_pair2d pos, char c, unsigned char fg, unsigned char bg);
 void fb_write_char(unsigned char x, unsigned char y, char c, unsigned char fg, unsigned char bg);
+void fb_moveCursor(struct uc_pair2d pos);
 /*
 const unsigned char BLACK =  0;
 const unsigned char BLUE = 1;

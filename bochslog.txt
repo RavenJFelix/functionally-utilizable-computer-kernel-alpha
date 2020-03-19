@@ -31,7 +31,7 @@
 00000000000i[      ]   Sound support: no
 00000000000i[      ]   USB support: no
 00000000000i[      ]   VGA extension support: vbe
-00000000000i[MEM0  ] allocated memory at 0x7f8344ea9010. after alignment, vector=0x7f8344eaa000
+00000000000i[MEM0  ] allocated memory at 0x7fe88ef9d010. after alignment, vector=0x7fe88ef9e000
 00000000000i[MEM0  ] 32.00MB
 00000000000i[MEM0  ] mem block size = 0x00020000, blocks=256
 00000000000i[MEM0  ] rom at 0xfffe0000/131072 ('/usr/share/bochs/BIOS-bochs-latest')
@@ -41,7 +41,7 @@
 00000000000i[DEV   ] PIIX3 PCI-to-ISA bridge present at device 1, function 0
 00000000000i[PLUGIN] init_dev of 'cmos' plugin device by virtual method
 00000000000i[CMOS  ] Using local time for initial clock
-00000000000i[CMOS  ] Setting initial clock to: Thu Mar 19 13:58:13 2020 (time0=1584644293)
+00000000000i[CMOS  ] Setting initial clock to: Thu Mar 19 15:09:42 2020 (time0=1584648582)
 00000000000i[PLUGIN] init_dev of 'dma' plugin device by virtual method
 00000000000i[DMA   ] channel 4 used by cascade
 00000000000i[PLUGIN] init_dev of 'pic' plugin device by virtual method
@@ -205,8 +205,29 @@
 00001899407i[BXVGA ] VBE known Display Interface b0c5
 00001902332i[VBIOS ] VBE Bios $Id: vbe.c,v 1.66 2018/01/26 10:59:46 vruppert Exp $
 00005682990i[BIOS  ] IDE time out
-01467628930i[BIOS  ] Booting from 07c0:0000
-01467729693i[BIOS  ] int13_harddisk: function 41, unmapped device for ELDL=80
-01467733370i[BIOS  ] int13_harddisk: function 08, unmapped device for ELDL=80
-01467737033i[BIOS  ] *** int 15h function AX=00c0, BX=0000 not yet supported!
-02187176000p[      ] >>PANIC<< SIGNAL 2 caught
+01451397130i[BIOS  ] Booting from 07c0:0000
+01451497893i[BIOS  ] int13_harddisk: function 41, unmapped device for ELDL=80
+01451501570i[BIOS  ] int13_harddisk: function 08, unmapped device for ELDL=80
+01451505233i[BIOS  ] *** int 15h function AX=00c0, BX=0000 not yet supported!
+02400653000p[SDL   ] >>PANIC<< User requested shutdown.
+02400653000i[CPU0  ] CPU is in protected mode (active)
+02400653000i[CPU0  ] CS.mode = 32 bit
+02400653000i[CPU0  ] SS.mode = 32 bit
+02400653000i[CPU0  ] EFER   = 0x00000000
+02400653000i[CPU0  ] | EAX=00000002  EBX=0002cd80  ECX=00000055  EDX=000003d5
+02400653000i[CPU0  ] | ESP=00103000  EBP=00067ee0  ESI=0002cef0  EDI=0002cef1
+02400653000i[CPU0  ] | IOPL=0 id vip vif ac vm rf nt of df if tf sf zf af pf cf
+02400653000i[CPU0  ] | SEG sltr(index|ti|rpl)     base    limit G D
+02400653000i[CPU0  ] |  CS:0008( 0001| 0|  0) 00000000 ffffffff 1 1
+02400653000i[CPU0  ] |  DS:0010( 0002| 0|  0) 00000000 ffffffff 1 1
+02400653000i[CPU0  ] |  SS:0010( 0002| 0|  0) 00000000 ffffffff 1 1
+02400653000i[CPU0  ] |  ES:0010( 0002| 0|  0) 00000000 ffffffff 1 1
+02400653000i[CPU0  ] |  FS:0010( 0002| 0|  0) 00000000 ffffffff 1 1
+02400653000i[CPU0  ] |  GS:0010( 0002| 0|  0) 00000000 ffffffff 1 1
+02400653000i[CPU0  ] | EIP=00100217 (00100217)
+02400653000i[CPU0  ] | CR0=0x60000011 CR2=0x00000000
+02400653000i[CPU0  ] | CR3=0x00000000 CR4=0x00000000
+02400653000i[CPU0  ] 0x00100217>> jmp .-2 (0x00100217) : EBFE
+02400653000i[CMOS  ] Last time is 1584650982 (Thu Mar 19 15:49:42 2020)
+02400653000i[      ] restoring default signal behavior
+02400653000i[SIM   ] quit_sim called with exit code 1
