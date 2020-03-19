@@ -3,6 +3,7 @@ HEADERS = $(wildcard kernel/*.h drivers*.h)
 OBJ = ${C_SOURCES:.c=.o}
 
 all: os-image
+	$(info $(C_SOURCES))
 
 
 run: os-image

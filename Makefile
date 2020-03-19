@@ -1,6 +1,8 @@
-CSOURCES = $(wildcard kernel/*.c drivers*.c)
-COJB = $(CSOURCES:.c=.o)
-HEADERS = $(wildcard include/*.h)
+CSOURCES =$(wildcard kernel/*.c drivers/*.c) 
+COBJ := $(CSOURCES:.c=.o)
+ASOURCES = $(wildcard kernel/*.s drivers/*.s)
+AOBJ = $(filter-out kernel/loader.o, ${ASOURCES:.s=.o})
+CINCLUDES = include
 CC = gcc
 CFLAGS = -m32 -nostdlib -nostdinc -fno-builtin -fno-stack-protector \
 		 -nostartfiles -nodefaultlibs -Wall -Wextra -Werror -c
@@ -10,8 +12,9 @@ ASFLAGS = -f elf
 
 all : kernel.elf
 
-kernel.elf : loader.o $(COBJ)
-	ld $(LDFLAGS) $(COBJ) -o $@
+kernel.elf : kernel/loader.o $(COBJ) $(AOBJ) 
+	$(info $(CSOURCES:.c=.o))
+	ld $(LDFLAGS) kernel/loader.o $(COBJ) $(AOBJ) -o $@
 
 os.iso: kernel.elf
 	cp $< iso/boot/$<
@@ -29,7 +32,7 @@ run: os.iso
 	bochs -f bochsrc.txt -q
 
 %.o: %.c
-	$(CC) $(CFLAGS) $< -o $@
+	$(CC) $(CFLAGS) -I $(CINCLUDES) $< -o $@
 
 %.o: %.s
 	$(AS) $(ASFLAGS) $< -o $@
