@@ -1,40 +1,36 @@
-C_SOURCES = $(wildcard kernel/*.c drivers/*.c)
-HEADERS = $(wildcard kernel/*.h drivers*.h)
-OBJ = ${C_SOURCES:.c=.o}
+OBJ = loader.o kmain.o
+CC = gcc
+CFLAGS = -m32 -nostdlib -nostdinc -fno-builtin -fno-stack-protector \
+		 -nostartfiles -nodefaultlibs -Wall -Wextra -Werror -c
+LDFLAGS = -T link.ld -melf_i386
+AS = nasm
+ASFLAGS = -f elf
 
-all: os-image
+all : kernel.elf
 
+kernel.elf : $(OBJ)
+	ld $(LDFLAGS) $(OBJ) -o $@
 
-run: os-image
-	qemu-system-x86_64 -drive format=raw,file=$<
+os.iso: kernel.elf
+	cp $< iso/boot/$<
+	genisoimage -R \
+		-b boot/grub/stage2_eltorito \
+		-no-emul-boot \
+		-boot-load-size 4 \
+		-A os \
+		-input-charset utf8 \
+		-quiet \
+		-boot-info-table \
+		-o os.iso \
+		iso
+run: os.iso
+	bochs -f bochsrc.txt -q
 
+%.o: %.c
+	$(CC) $(CFLAGS) $< -o $@
 
-kernel.o : kernel.c
-	gcc --freestanding -m32 -c $< -o $@
-
-kernel.bin : kernel/kernel_entry.o ${OBJ}
-	ld -m elf_i386 -o $@ -Ttext 0x1000 $^ --oformat binary
-
-os-image: boot_sect.bin kernel.bin
-	cat $^ > $@
-
-boot_sect.bin : boot/boot_sect.asm
-	nasm $< -f bin -I "./utils/" -o $@
-
-%.o : %.c
-	gcc -ffreestanding -m32 -c $< -o $@
-
-
-%.o : %.asm
-	nasm $< -f elf -o $@
-
-%.bin : %.asm
-	nasm $< -f bin -I "./utils" -o $@
-kernel.dis : kernel.bin
-	ndisasm -b 32 $ < > $@
+%.o: %.s
+	$(AS) $(ASFLAGS) $< -o $@
 
 clean:
-	rm -rf *.o *.dis *.o os-image *.map
-	rm -rf kernel/*.o boot/*.bin drivers/*.o
-
-
+	rm -rf *.o kernel.elf os.iso
