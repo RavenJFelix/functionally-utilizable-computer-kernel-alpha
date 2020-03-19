@@ -1,9 +1,9 @@
 #include "screen.h"
 void kmain()
 {
-	char *frame_buffer = (char*)0x000b8002 + 160;
+	char *frame_buffer = (char*)0x000b8000;
 
-	frame_buffer[0] = 'F';
+	frame_buffer[162] = 'F';
 	frame_buffer[2] = 'U';
 	//Have the caharcter point to the first text cell
 	//of the video memory

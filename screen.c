@@ -1,6 +1,6 @@
 #include "pair2d.h"
-#define MAX_ROW_INDEX 24 
-#define MAX_COL_INDEX 80
+#define MAX_ROWS 25
+#define MAX_COLS 80
 #define FRAME_BUFFER_ADR  0x000b8000
 char *fb = (char*) FRAME_BUFFER_ADR;
 
@@ -28,7 +28,4 @@ void fb_write_char_pos(struct uc_pair2d pos, char c, unsigned char fg, unsigned 
 	fb[line_pos + 1] = color_code;
 }
 
-unsigned int fb_line_pos (unsigned char x, unsigned char y)
-{
-	return x+ y;
-}
+#define fb_line_pos(x, y) 2 * (MAX_COLS * y + x)
