@@ -1,4 +1,6 @@
-OBJ = loader.o kmain.o screen.o io.o
+CSOURCES = $(wildcard kernel/*.c drivers*.c)
+COJB = $(CSOURCES:.c=.o)
+HEADERS = $(wildcard include/*.h)
 CC = gcc
 CFLAGS = -m32 -nostdlib -nostdinc -fno-builtin -fno-stack-protector \
 		 -nostartfiles -nodefaultlibs -Wall -Wextra -Werror -c
@@ -8,8 +10,8 @@ ASFLAGS = -f elf
 
 all : kernel.elf
 
-kernel.elf : $(OBJ)
-	ld $(LDFLAGS) $(OBJ) -o $@
+kernel.elf : loader.o $(COBJ)
+	ld $(LDFLAGS) $(COBJ) -o $@
 
 os.iso: kernel.elf
 	cp $< iso/boot/$<
