@@ -6,7 +6,7 @@ char *fb = (char*) FRAME_BUFFER_ADR;
 
 void fb_write_char(unsigned char x, unsigned char y, char c, unsigned char fg, unsigned char bg)
 {
-	unsigned int line_pos = 2 * ( (MAX_ROW_INDEX * y) + x);
+	unsigned int line_pos = FB_LINE_POS(x, y);
 	// Mask first four bits of fg and bg, move fg to first four bits of bg
 	char color_code = ((fg & 0x0f) << 4) | (bg & 0x0f);
 	
@@ -18,7 +18,7 @@ void fb_write_char(unsigned char x, unsigned char y, char c, unsigned char fg, u
 
 void fb_write_char_pos(struct uc_pair2d pos, char c, unsigned char fg, unsigned char bg)
 {
-	unsigned int line_pos = 2 * ( (MAX_ROW_INDEX) * pos.y + pos.x);
+	unsigned int line_pos = FB_LINE_POS(pos.x, pos.y);
 	// Mask first four bits of fg and bg, move fg to first four bits of bg
 	char color_code = ((fg & 0x0f) << 4) | (bg & 0x0f);
 	
@@ -28,4 +28,4 @@ void fb_write_char_pos(struct uc_pair2d pos, char c, unsigned char fg, unsigned 
 	fb[line_pos + 1] = color_code;
 }
 
-#define fb_line_pos(x, y) 2 * (MAX_COLS * y + x)
+#define FB_LINE_POS(x, y) 2 * (MAX_COLS * y + x)

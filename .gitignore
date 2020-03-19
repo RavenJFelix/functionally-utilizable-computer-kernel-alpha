@@ -2,4 +2,6 @@
 *.bin
 *.dis
 *.map
+*.swp
+
 
