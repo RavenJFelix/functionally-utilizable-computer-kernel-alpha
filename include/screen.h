@@ -1,9 +1,17 @@
 #ifndef SCREEN_H
 #define SCREEN_H
 #include "pair2d.h"
-void fb_write_char_pos(struct uc_pair2d pos, char c, unsigned char fg, unsigned char bg);
-void fb_write_char(unsigned char x, unsigned char y, char c, unsigned char fg, unsigned char bg);
+struct fb_color_code
+{
+	unsigned char fg;
+	unsigned char bg;
+};
+void fb_write_char_fast(unsigned char x, unsigned char y, char c, unsigned char fg, unsigned char bg);
+void fb_write_char(struct uc_pair2d pos, char c, struct fb_color_code color_code);
 void fb_moveCursor(struct uc_pair2d pos);
+void fb_write_string_direct(struct uc_pair2d pos, const char* string, unsigned int len, struct fb_color_code color_code);
+
+
 /*
 const unsigned char BLACK =  0;
 const unsigned char BLUE = 1;

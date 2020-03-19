@@ -1,3 +1,4 @@
+#include "screen.h"
 #include "pair2d.h"
 #include "io.h"
 #define MAX_ROWS 25
@@ -12,7 +13,17 @@
 #define FB_CURSOR_LINE_POS(x, y) (MAX_COLS * y + x)
 char *fb = (char*) FRAME_BUFFER_ADR;
 
-void fb_write_char(unsigned char x, unsigned char y, char c, unsigned char fg, unsigned char bg)
+void fb_write_string_direct(struct uc_pair2d pos, const char* string, unsigned int len, struct fb_color_code color_code)
+{
+	struct uc_pair2d position =pos;
+	for(unsigned int i = 0;i < len;i++)
+	{
+		fb_write_char(position, string[i], color_code);
+		position.x++;
+	}
+}
+
+void fb_write_char_fast(unsigned char x, unsigned char y, char c, unsigned char fg, unsigned char bg)
 {
 	unsigned int line_pos = FB_LINE_POS(x, y);
 	// Mask first four bits of fg and bg, move fg to first four bits of bg
@@ -24,16 +35,16 @@ void fb_write_char(unsigned char x, unsigned char y, char c, unsigned char fg, u
 	fb[line_pos + 1] = color_code;
 }
 
-void fb_write_char_pos(struct uc_pair2d pos, char c, unsigned char fg, unsigned char bg)
+void fb_write_char(struct uc_pair2d pos, char c, struct fb_color_code color_code)
 {
 	unsigned int line_pos = FB_LINE_POS(pos.x, pos.y);
 	// Mask first four bits of fg and bg, move fg to first four bits of bg
-	char color_code = ((fg & 0x0f) << 4) | (bg & 0x0f);
+	char binary_color_code = ((color_code.fg & 0x0f) << 4) | (color_code.bg & 0x0f);
 	
 	//Write character to first byte of cell
 	fb[line_pos] = c;
 	//Write character to the second byte of the cell
-	fb[line_pos + 1] = color_code;
+	fb[line_pos + 1] = binary_color_code;
 }
 
 void fb_moveCursor(struct uc_pair2d pos)
