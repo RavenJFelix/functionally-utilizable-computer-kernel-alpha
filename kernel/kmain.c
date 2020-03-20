@@ -10,10 +10,10 @@ void kmain()
 	fb_moveCursor( (struct uc_pair2d){0,0});
 	struct uc_pair2d pos = {0,24};
 
-	fb_write_char((struct uc_pair2d){0,0}, 'A', wb);
-	fb_write_char((struct uc_pair2d){79,24}, 'B', wb);
-	fb_write_char((struct uc_pair2d){0,24}, 'C', wb);
-	fb_write_char((struct uc_pair2d){79,0}, 'C', wb);
+	fb_write_char_abstract((struct uc_pair2d){0,0}, 'A', wb);
+	fb_write_char_abstract((struct uc_pair2d){79,24}, 'B', wb);
+	fb_write_char_abstract((struct uc_pair2d){0,24}, 'C', wb);
+	fb_write_char_abstract((struct uc_pair2d){79,0}, 'C', wb);
 
 	//fb_shift_up(1);
 	bool right = true;

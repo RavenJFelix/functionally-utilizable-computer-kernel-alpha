@@ -17,6 +17,7 @@
 #define FB_COLOR_CODE_STRUCT_TO_UCHAR(fg, bg) ((fg & 0x0f) << 4) | (bg & 0x0f) //Takes two unsigned chars
 char *fb = (char*) FRAME_BUFFER_ADR;
 
+
 //void fb_printWrap_hasNull(const struct uc_pair2d* startPos, const char* str,const struct fb_color_code * colorCode)
 //{
 //	unsigned int i = 0;
