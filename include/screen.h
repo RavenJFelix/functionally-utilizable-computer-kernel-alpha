@@ -1,17 +1,19 @@
 #ifndef SCREEN_H
 #define SCREEN_H
 #include "pair2d.h"
+#define FB_MAX_ROWS 25
+#define FB_MAX_COLS 80
 struct fb_color_code
 {
 	unsigned char fg;
 	unsigned char bg;
 };
 
-//struct fb_state
-//{
-//	struct fb_color_code default_color;
-//	struct uc_pair2d cursor_pos;
-//};
+struct fb_state
+{
+	struct fb_color_code default_color;
+	struct uc_pair2d cursor_pos;
+};
 
 void fb_write_char(unsigned int line_pos, char c, unsigned char color_code);
 void fb_write_char_fast(unsigned char x, unsigned char y, char c, unsigned char fg, unsigned char bg);

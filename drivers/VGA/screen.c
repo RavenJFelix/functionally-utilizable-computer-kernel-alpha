@@ -2,8 +2,6 @@
 #include "stringConsts.h"
 #include "pair2d.h"
 #include "io.h"
-#define MAX_ROWS 25
-#define MAX_COLS 80
 #define FRAME_BUFFER_ADR 0x000b8000
 #define FB_CURSE_COMMAND_PORT  0x3D4
 #define FB_CURSE_DATA_PORT 0x3d5
@@ -12,8 +10,8 @@
 
 #define NULL_TERMIN '\0'
 
-#define FB_LINE_POS(x, y) 2 * (MAX_COLS * y + x)
-#define FB_CURSOR_LINE_POS(x, y) (MAX_COLS * y + x)
+#define FB_LINE_POS(x, y) 2 * (FB_MAX_COLS * y + x)
+#define FB_CURSOR_LINE_POS(x, y) (FB_MAX_COLS * y + x)
 #define FB_COLOR_CODE_STRUCT_TO_UCHAR(fg, bg) ((fg & 0x0f) << 4) | (bg & 0x0f) //Takes two unsigned chars
 char *fb = (char*) FRAME_BUFFER_ADR;
 
@@ -86,7 +84,7 @@ void fb_shift_up(unsigned int distance)
 	{
 		
 		//For each row except the last
-		for(int y = 0; y < (MAX_ROWS - 1); y++)
+		for(int y = 0; y < (FB_MAX_ROWS - 1); y++)
 		{
 			for(unsigned int x =0; x < MAX_COLS; x++)
 			{
@@ -105,7 +103,7 @@ void fb_shift_up(unsigned int distance)
 
 void fb_clear_line(unsigned char line)
 {
-	for (unsigned int x = 0; x < MAX_COLS; x++)
+	for (unsigned int x = 0; x < FB_MAX_COLS; x++)
 	{
 		unsigned int line_pos  = FB_LINE_POS(x, line);
 		fb[line_pos] = ' ';	
