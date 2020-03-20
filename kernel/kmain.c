@@ -22,6 +22,8 @@ void kmain()
 	fb_shift_up(1);
 	int wait = 1;
 	int wait_time = 1000000;
+
+	fb_write_string_direct(pos, fuck, wb);
 	while(true)
 	{
 		if(wait == 0)
