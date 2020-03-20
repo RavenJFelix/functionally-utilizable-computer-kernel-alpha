@@ -15,7 +15,6 @@
 #define FB_COLOR_CODE_STRUCT_TO_UCHAR(fg, bg) ((fg & 0x0f) << 4) | (bg & 0x0f) //Takes two unsigned chars
 char *fb = (char*) FRAME_BUFFER_ADR;
 
-
 //void fb_printWrap_hasNull(const struct uc_pair2d* startPos, const char* str,const struct fb_color_code * colorCode)
 //{
 //	unsigned int i = 0;
@@ -27,6 +26,15 @@ char *fb = (char*) FRAME_BUFFER_ADR;
 /** Same as fb_write_char but uses two structs to pass data in a more intuitive
  * manner
  */
+
+
+struct uc_pair2d fb_char_line_pos_to_pos(unsigned int line_pos)
+{
+	unsigned char x = (unsigned char) (line_pos % FB_MAX_ROWS);
+	unsigned char y = (unsigned char) (line_pos / FB_MAX_COLS);
+	return (struct uc_pair2d){x,y};
+}
+
 void fb_write_string_direct(struct uc_pair2d pos, const char* str, const struct fb_color_code color_code)
 {
 	unsigned int i = 0;
