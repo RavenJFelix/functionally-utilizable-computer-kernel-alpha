@@ -39,3 +39,4 @@ run: os.iso
 
 clean:
 	rm -rf *.o kernel.elf os.iso
+	find . -type f -name '*.o' -delete
