@@ -3,6 +3,9 @@
 #include "pair2d.h"
 #define FB_MAX_ROWS 25
 #define FB_MAX_COLS 80
+
+#define FB_LINE_POS(x, y) 2 * (FB_MAX_COLS * y + x)
+#define FB_CURSOR_LINE_POS(x, y) (FB_MAX_COLS * y + x)
 struct fb_color_code
 {
 	unsigned char fg;
@@ -15,6 +18,7 @@ struct fb_state
 	struct uc_pair2d cursor_pos;
 };
 
+struct uc_pair2d fb_char_line_pos_to_pos(unsigned int line_pos);
 void fb_write_char(unsigned int line_pos, char c, unsigned char color_code);
 void fb_write_char_fast(unsigned char x, unsigned char y, char c, unsigned char fg, unsigned char bg);
 void fb_write_char_abstract(struct uc_pair2d pos, char c, struct fb_color_code color_code);
@@ -25,7 +29,7 @@ void fb_shift_up(unsigned int distance);
 void fb_shift_down(unsigned int distance);
 void fb_clear_line(unsigned char line);
 
-
+void fb_write_string_direct(struct uc_pair2d pos, const char* str, const struct fb_color_code color_code);
 #define FB_BLACK  0;
 #define FB_BLUE = 1;
 #define FB_GREEN = 2;

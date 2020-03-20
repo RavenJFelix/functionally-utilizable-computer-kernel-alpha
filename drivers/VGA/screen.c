@@ -10,8 +10,6 @@
 
 #define NULL_TERMIN '\0'
 
-#define FB_LINE_POS(x, y) 2 * (FB_MAX_COLS * y + x)
-#define FB_CURSOR_LINE_POS(x, y) (FB_MAX_COLS * y + x)
 #define FB_COLOR_CODE_STRUCT_TO_UCHAR(fg, bg) ((fg & 0x0f) << 4) | (bg & 0x0f) //Takes two unsigned chars
 char *fb = (char*) FRAME_BUFFER_ADR;
 
@@ -30,15 +28,15 @@ char *fb = (char*) FRAME_BUFFER_ADR;
 
 struct uc_pair2d fb_char_line_pos_to_pos(unsigned int line_pos)
 {
-	unsigned char x = (unsigned char) (line_pos % FB_MAX_ROWS);
-	unsigned char y = (unsigned char) (line_pos / FB_MAX_COLS);
+	unsigned char x = (char) (((line_pos/2) % FB_MAX_COLS)) ;
+	unsigned char y = (char) ( ( ((line_pos/2) / FB_MAX_COLS)));
 	return (struct uc_pair2d){x,y};
 }
 
 void fb_write_string_direct(struct uc_pair2d pos, const char* str, const struct fb_color_code color_code)
 {
 	unsigned int i = 0;
-	struct uc_pair2d current_pos = pos;
+	struct uc_pair2d current_pos = fb_char_line_pos_to_pos(FB_LINE_POS(pos.x, pos.y));
 	while(str[i] != NULL_TERMIN)
 	{
 		fb_write_char_abstract(current_pos, str[i], color_code);
@@ -49,7 +47,7 @@ void fb_write_string_direct(struct uc_pair2d pos, const char* str, const struct 
 
 void fb_write_string_direct_noNull(struct uc_pair2d pos, const char* string, unsigned int len, struct fb_color_code color_code)
 {
-	struct uc_pair2d position =pos;
+	struct uc_pair2d position = pos;
 	for(unsigned int i = 0;i < len;i++)
 	{
 		fb_write_char_abstract(position, string[i], color_code);
@@ -94,7 +92,7 @@ void fb_shift_up(unsigned int distance)
 		//For each row except the last
 		for(int y = 0; y < (FB_MAX_ROWS - 1); y++)
 		{
-			for(unsigned int x =0; x < MAX_COLS; x++)
+			for(unsigned int x =0; x < FB_MAX_COLS; x++)
 			{
 				//Copy The corresponding character from the row below
 				//struct uc_pair2d pos = {(unsigned char)x,(unsigned char)y};

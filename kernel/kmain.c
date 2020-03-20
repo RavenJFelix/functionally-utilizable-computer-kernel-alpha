@@ -19,10 +19,9 @@ void kmain()
 	bool right = true;
 	int move_length = 50;
 	int x_val = 0;
-	fb_shift_up(1);
 	int wait = 1;
-	int wait_time = 1000000;
-
+	int wait_time = 1;
+	/*
 	fb_write_string_direct(pos, fuck, wb);
 	while(true)
 	{
@@ -62,4 +61,5 @@ void kmain()
 	//	fb_write_char(pos, 'Z', wb);
 	//	fb_write_char(pos2, 'X', wb);
 	//}
+	*/
 }
