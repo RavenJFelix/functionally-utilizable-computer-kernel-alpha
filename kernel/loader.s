@@ -2,7 +2,7 @@ global loader ; entry for ELF
 [extern kmain]
 
 MAGIC_NUMBER equ 0x1BADB002
-KERNEL_STACK_SIZE equ 4096
+KERNEL_STACK_SIZE equ 4096 * 16
 FLAGS equ 0x0
 CHECKSUM equ -MAGIC_NUMBER
 

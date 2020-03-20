@@ -1,3 +1,4 @@
+#include "bool.h"
 #include "screen.h"
 #include "stringConsts.h"
 #include "pair2d.h"
@@ -7,6 +8,7 @@
 #define FB_CURSE_DATA_PORT 0x3d5
 #define FB_CURSE_HIGH_COMMAND 14
 #define FB_CURSE_LOW_COMMAND 15
+#define MAX_LINE_POS (FB_LINE_POS(24, 79))
 
 #define NULL_TERMIN '\0'
 
@@ -25,6 +27,28 @@ char *fb = (char*) FRAME_BUFFER_ADR;
  * manner
  */
 
+void fb_write_string_wrap(struct uc_pair2d pos, const char *str, const struct fb_color_code color_code)
+{
+
+	unsigned int str_index = 0;
+	unsigned int vga_cell_offset = 0;
+	unsigned int line_pos = FB_LINE_POS(pos.x, pos.y);
+	char current_char = str[str_index];
+	while(current_char != NULL_TERMIN && ! line_pos_exceeds_max(line_pos))
+	{
+		//fb_write_char_abstract(pos, 'F', (struct fb_color_code){0, 15});
+		
+		fb_write_char((line_pos + vga_cell_offset), current_char, (FB_COLOR_CODE_STRUCT_TO_UCHAR(color_code.fg, color_code.bg)));
+		vga_cell_offset += 2; //Vga character cells are two bytes in length
+		++str_index;
+		current_char = str[str_index];
+	}
+}
+
+bool line_pos_exceeds_max(unsigned int line_pos)
+{
+	return (line_pos >= MAX_LINE_POS);
+}
 
 struct uc_pair2d fb_char_line_pos_to_pos(unsigned int line_pos)
 {
@@ -100,7 +124,6 @@ void fb_shift_up(unsigned int distance)
 				unsigned int line_pos_source = FB_LINE_POS(x, (y + 1));
 				fb[line_pos_dest] = fb[line_pos_source];
 				fb[line_pos_dest + 1] = fb[line_pos_source + 1];
-				//fb_write_char(pos, 'F', (struct fb_color_code){0, 15});
 			}
 		}
 		fb_clear_line(24);

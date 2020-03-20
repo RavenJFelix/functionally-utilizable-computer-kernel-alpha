@@ -1,5 +1,6 @@
 #ifndef SCREEN_H
 #define SCREEN_H
+#include "bool.h"
 #include "pair2d.h"
 #define FB_MAX_ROWS 25
 #define FB_MAX_COLS 80
@@ -18,6 +19,9 @@ struct fb_state
 	struct uc_pair2d cursor_pos;
 };
 
+
+bool line_pos_exceeds_max(unsigned int line_pos);
+void fb_write_string_wrap(struct uc_pair2d pos, const char *str, const struct fb_color_code color_code);
 struct uc_pair2d fb_char_line_pos_to_pos(unsigned int line_pos);
 void fb_write_char(unsigned int line_pos, char c, unsigned char color_code);
 void fb_write_char_fast(unsigned char x, unsigned char y, char c, unsigned char fg, unsigned char bg);
