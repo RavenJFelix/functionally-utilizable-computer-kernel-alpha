@@ -20,28 +20,39 @@ void kmain()
 	int move_length = 50;
 	int x_val = 0;
 	fb_shift_up(1);
+	int wait = 1;
+	int wait_time = 1000000;
 	while(true)
 	{
-	fb_write_string_direct(pos, fuck, wb);
-		if(right)
+		if(wait == 0)
 		{
-			x_val++;
-			if(x_val >= move_length)
+			fb_write_string_direct(pos, fuck, wb);
+
+			if(right)
 			{
-				right = false;
+				x_val++;
+				if(x_val >= move_length)
+				{
+					right = false;
+				}
 			}
+			else
+			{
+				x_val--;
+				if(x_val <= 0)
+				{
+					right = true;
+				}
+			}
+
+			pos.x = x_val;
+			fb_shift_up(1);
+			wait = wait_time;
 		}
 		else
 		{
-			x_val--;
-			if(x_val <= 0)
-			{
-				right = true;
-			}
+			wait--;
 		}
-
-		pos.x = x_val;
-
 	}
 	//for(int i = 0 ; i < 10; ++i)
 	//{

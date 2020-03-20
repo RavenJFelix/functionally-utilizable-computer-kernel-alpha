@@ -1,6 +1,14 @@
 #ifndef BOOL_H
 #define BOOL_H
-#define true 1
-#define false 0
-typedef int bool;
+/* Many years ago, when the earth was still cooling, we used this: */
+
+typedef enum
+{
+    false = ( 1 == 0 ),
+    true = ( ! false )
+} bool;
+
+/* It has always worked for me. */
+
+
 #endif
