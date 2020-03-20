@@ -6,8 +6,10 @@ struct fb_color_code
 	unsigned char fg;
 	unsigned char bg;
 };
+
+void fb_write_char(unsigned int line_pos, char c, unsigned char color_code);
 void fb_write_char_fast(unsigned char x, unsigned char y, char c, unsigned char fg, unsigned char bg);
-void fb_write_char(struct uc_pair2d pos, char c, struct fb_color_code color_code);
+void fb_write_char_abstract(struct uc_pair2d pos, char c, struct fb_color_code color_code);
 void fb_moveCursor(struct uc_pair2d pos);
 void fb_write_string_direct_noNull(struct uc_pair2d pos, const char* string, unsigned int len, struct fb_color_code color_code);
 void fb_write_string_direct(struct uc_pair2d pos, const char* str, const struct fb_color_code color_code);
