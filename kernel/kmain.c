@@ -1,4 +1,5 @@
 #include "screen.h"
+#include "bool.h"
 void kmain()
 {
 	//const int frame_adr = 0x000b8000;
@@ -14,9 +15,34 @@ void kmain()
 	fb_write_char((struct uc_pair2d){0,24}, 'C', wb);
 	fb_write_char((struct uc_pair2d){79,0}, 'C', wb);
 
-	fb_write_string_direct(pos, fuck, wb);
 	//fb_shift_up(1);
+	bool right = true;
+	int move_length = 50;
+	int x_val = 0;
 	fb_shift_up(1);
+	while(true)
+	{
+	fb_write_string_direct(pos, fuck, wb);
+		if(right)
+		{
+			x_val++;
+			if(x_val >= move_length)
+			{
+				right = false;
+			}
+		}
+		else
+		{
+			x_val--;
+			if(x_val <= 0)
+			{
+				right = true;
+			}
+		}
+
+		pos.x = x_val;
+
+	}
 	//for(int i = 0 ; i < 10; ++i)
 	//{
 	//	fb_shift_up(1);
