@@ -32,7 +32,7 @@ call switch_to_pm
 load_kernel:
 pusha
 mov bx, KERNEL_OFFSET
-mov dh, 12
+mov dh, 20
 
 mov dl, [BOOT_DRIVE]
 

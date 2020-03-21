@@ -6,21 +6,25 @@ CINCLUDES = include
 CC = gcc
 CFLAGS = -m32 -nostdlib -nostdinc -fno-builtin -fno-stack-protector \
 		 -nostartfiles -nodefaultlibs -Wall -Wextra -c
-LDFLAGS = -melf_i386
+LDFLAGS = -melf_i386 -Ttext 0x1000 --oformat binary
 AS = nasm
 ASFLAGS = -f elf
 
 all : os.iso
+boot/loader.o: boot/loader.s
+	nasm $< -f elf -o $@
 
 kernel.bin : boot/loader.o $(COBJ) $(AOBJ) 
 	$(info $(CSOURCES:.c=.o))
+	$(info $(AOBJ))
 	ld $(LDFLAGS) boot/loader.o $(COBJ) $(AOBJ) -o $@
 
 os.iso: boot_sect.bin kernel.bin
 	cat boot_sect.bin kernel.bin > $@
 	
 run: os.iso
-	qemu-system-x86_64 $<
+	#qemu-system-x86_64 $<
+	qemu-system-x86_64 -drive format=raw,file=$<
 
 %.o: %.c
 	$(CC) $(CFLAGS) -I $(CINCLUDES) $< -o $@
