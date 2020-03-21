@@ -19,7 +19,7 @@
 #define FB_LIGHT_BROWN = 14;
 #define FB_WHITE = 15;
 
-#define FB_COL_CODE(x, y) ((struct fb_color_code) {x, y})
+#define FB_COLOR_CODE(x, y) ((struct fb_color_code) {x, y})
 
 #define FB_MAX_ROWS 25
 #define FB_MAX_COLS 80
