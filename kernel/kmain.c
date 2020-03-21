@@ -14,7 +14,7 @@ void kmain()
 
 	//fb_write_char_abstract((struct uc_pair2d){0,24}, 'C', wb);
 	//fb_write_char_abstract((struct uc_pair2d){79,0}, 'C', wb);
-	fb_write_string_wrap_direct(UC_PAIR2D(0,0), fuck_longer, FB_COL_CODE(0, 15));
+	fb_write_string_wrap_direct(UC_PAIR2D(0,0), fuck_longer, FB_COLOR_CODE(0, 15));
 	
 
 

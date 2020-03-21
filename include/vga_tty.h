@@ -1,9 +1,5 @@
 #include "screen.h"
+#include "vga_tty_cell.h"
 
-struct fb_state
-{
-	struct fb_color_code default_color;
-	struct uc_pair2d cursor_pos;
-};
 
 
