@@ -11,7 +11,6 @@
 
 #define NULL_TERMIN '\0'
 
-char *fb = (char*) 0xb8000;
 
 //void fb_printWrap_hasNull(const struct uc_pair2d* startPos, const char* str,const struct fb_color_code * colorCode)
 //{
@@ -86,9 +85,9 @@ void fb_write_char(unsigned int line_pos, char c, unsigned char color_code)
 	// Mask first four bits of fg and bg, move fg to first four bits of bg
 	
 	//Write character to first byte of cell
-	fb[line_pos] = c;
+	FB_BYTE(line_pos) = c;
 	//Write character to the second byte of the cell
-	fb[line_pos + 1] = color_code;
+	FB_BYTE(line_pos + 1) = color_code;
 }
 
 void fb_write_char_abstract(struct uc_pair2d pos, char c, struct fb_color_code color_code)

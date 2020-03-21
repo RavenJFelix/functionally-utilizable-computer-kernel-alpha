@@ -5,7 +5,7 @@ AOBJ = $(filter-out kernel/loader.o, ${ASOURCES:.s=.o})
 CINCLUDES = ./include
 CC = gcc
 CFLAGS = -m32 -ffreestanding -c
-LDFLAGS = -melf_i386 -Ttext 0x1000 --oformat binary
+LDFLAGS = -melf_i386 -Ttext 0x1000 --oformat binary -T link.ld
 AS = nasm
 ASFLAGS = -f elf
 
