@@ -53,7 +53,7 @@ void fb_write_string_wrap_auto(
 		++str_index;
 		current_char = str[str_index];
 
-		if (line_pos_exceeds_max(current_vga_cell))
+		if (fb_line_pos_excess_max(current_vga_cell))
 		{
 			fb_shift_up(1);
 			current_vga_cell -= 2 * FB_MAX_COLS; // Multiply by two since cells take up two bytes
@@ -94,7 +94,7 @@ void fb_write_string_wrap_safe(
 	unsigned int str_index = 0;
 	unsigned int current_vga_cell = FB_LINE_POS(pos.x, pos.y);
 	char current_char = str[str_index];
-	while(current_char != STRING_NULL_TERMINATOR && ! line_pos_exceeds_max(current_vga_cell))
+	while(current_char != STRING_NULL_TERMINATOR && ! fb_line_pos_excess_max(current_vga_cell))
 	{
 		fb_write_cell(
 				current_vga_cell,
