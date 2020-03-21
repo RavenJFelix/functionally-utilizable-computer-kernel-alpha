@@ -1,6 +1,6 @@
-
 #include "bool.h"
 #include "screen.h"
+#include "vga_const.h"
 void kmain()
 {
 	char *fb = (char*) 0xb8000;
@@ -14,7 +14,7 @@ void kmain()
 
 	//fb_write_char_abstract((struct uc_pair2d){0,24}, 'C', wb);
 	//fb_write_char_abstract((struct uc_pair2d){79,0}, 'C', wb);
-	fb_write_string_wrap_direct((struct uc_pair2d){0,24}, fuck_longer, wb);
+	fb_write_string_wrap_direct(UC_PAIR2D(0,0), fuck_longer, FB_COL_CODE(0, 15));
 	
 
 
