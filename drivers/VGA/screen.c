@@ -136,6 +136,6 @@ void fb_clear_line(unsigned char line)
 	for (unsigned int x = 0; x < FB_MAX_COLS; x++)
 	{
 		unsigned int line_pos  = FB_LINE_POS(x, line);
-		fb[line_pos] = ' ';	
+		FB_BYTE(line_pos) = ' ';	
 	}
 }
