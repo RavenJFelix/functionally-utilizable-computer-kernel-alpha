@@ -24,6 +24,11 @@
 #define FB_MAX_ROWS 25
 #define FB_MAX_COLS 80
 
+#define FB_CURSE_COMMAND_PORT  0x3d4
+#define FB_CURSE_DATA_PORT 0x3d5
+#define FB_CURSE_HIGH_COMMAND 14
+#define FB_CURSE_LOW_COMMAND 15
+
 
 //The final memory address that can be written to the fb
 #define FB_MAX_LINE_POS (FB_LINE_POS(79, 24))
