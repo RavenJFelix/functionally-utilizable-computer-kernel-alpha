@@ -1,5 +1,6 @@
 #ifndef VGA_CONST_H
 #define VGA_CONST_H
+#include "screen.h"
 //Vga color codes
 #define FB_BLACK  0;
 #define FB_BLUE = 1;
@@ -17,6 +18,8 @@
 #define FB_LIGHT_MAGENTA = 13;
 #define FB_LIGHT_BROWN = 14;
 #define FB_WHITE = 15;
+
+#define FB_COL_CODE(x, y) ((struct fb_color_code) {x, y})
 
 #define FB_MAX_ROWS 25
 #define FB_MAX_COLS 80
