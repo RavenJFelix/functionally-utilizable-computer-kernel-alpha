@@ -2,6 +2,7 @@ CSOURCES =$(wildcard kernel/*.c drivers/*.c drivers/*/*.c)
 COBJ := $(CSOURCES:.c=.o)
 ASOURCES = $(wildcard kernel/*.s drivers/*.s)
 AOBJ = $(filter-out kernel/loader.o, ${ASOURCES:.s=.o})
+HEADERS = $(wildcard *.h */*.h */*/*.h */*/*/*.h */*/*/*/*.h)
 CINCLUDES = ./include
 CC = gcc
 CFLAGS = -m32 -ffreestanding -c
@@ -25,7 +26,7 @@ run: os.iso
 	#qemu-system-x86_64 $<
 	qemu-system-x86_64 -drive format=raw,file=$<
 
-%.o: %.c
+%.o: %.c $(HEADERS)
 	$(CC) $(CFLAGS) -I $(CINCLUDES) $< -o $@
 
 %.o: %.s

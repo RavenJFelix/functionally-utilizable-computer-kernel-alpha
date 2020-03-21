@@ -7,18 +7,8 @@
 #define FB_CURSE_COMMAND_PORT  0x3d4
 #define FB_CURSE_DATA_PORT 0x3d5
 #define FB_CURSE_HIGH_COMMAND 14
+
 #define FB_CURSE_LOW_COMMAND 15
-
-#define NULL_TERMIN '\0'
-
-
-
-
-
-
-
-
-
 
 void fb_moveCursor(struct uc_pair2d pos)
 {

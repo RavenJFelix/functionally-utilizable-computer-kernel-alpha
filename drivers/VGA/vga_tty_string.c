@@ -10,7 +10,7 @@ void fb_write_string_direct(
 		)
 {
 	unsigned int i = 0;
-	struct uc_pair2d current_pos = fb_char_line_pos_to_pos(FB_LINE_POS(pos.x, pos.y));
+	struct uc_pair2d current_pos = fb_char_line_pos_to_pair2d(FB_LINE_POS(pos.x, pos.y));
 	while(str[i] != STRING_NULL_TERMINATOR)
 	{
 		fb_write_cell_abstract(current_pos, str[i], color_code);
