@@ -1,21 +1,22 @@
 #ifndef VGA_COLOR_CONSTANTS_H
 #define VGA_COLOR_CONSTANTS_H
 #include "vga_util.h"
-#define FB_BLACK  0;
-#define FB_BLUE = 1;
-#define FB_GREEN = 2;
-#define FB_CYAN = 3;
-#define FB_RED = 4;
-#define FB_MAGENTA = 5;
-#define FB_BROWN = 6;
-#define FB_LIGHT_GREY = 7;
-#define FB_DARK_GREY = 8;
-#define FB_LIGHT_BLUE = 9;
-#define FB_LIGHT_GREEN = 10;
-#define FB_LIGHT_CYAN = 11;
-#define FB_LIGHT_RED = 12;
-#define FB_LIGHT_MAGENTA = 13;
-#define FB_LIGHT_BROWN = 14;
-#define FB_WHITE = 15;
+#define VGA_BLACK  0;
+#define VGA_BLUE = 1;
+#define VGA_GREEN = 2;
+#define VGA_CYAN = 3;
+#define VGA_RED = 4;
+#define VGA_MAGENTA = 5;
+#define VGA_BROWN = 6;
+#define VGA_LIGHT_GREY = 7;
+#define VGA_DARK_GREY = 8;
+#define VGA_LIGHT_BLUE = 9;
+#define VGA_LIGHT_GREEN = 10;
+#define VGA_LIGHT_CYAN = 11;
+#define VGA_LIGHT_RED = 12;
+#define VGA_LIGHT_MAGENTA = 13;
+#define VGA_LIGHT_BROWN = 14;
+#define VGA_WHITE = 15;
 
+//Convenience constants
 #endif
