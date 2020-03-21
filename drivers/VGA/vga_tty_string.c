@@ -1,6 +1,7 @@
 #include "vga_tty_string.h"
 #include "vga_tty.h"
 #include "vga_util.h"
+#include "vga_tty_manipulation.h"
 #include "pair2d.h"
 #include "string_const.h"
 void fb_write_string_direct(
