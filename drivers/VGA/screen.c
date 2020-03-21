@@ -3,6 +3,7 @@
 #include "screen.h"
 #include "pair2d.h"
 #include "io.h"
+#include "vga_util.h"
 #define FB_CURSE_COMMAND_PORT  0x3d4
 #define FB_CURSE_DATA_PORT 0x3d5
 #define FB_CURSE_HIGH_COMMAND 14
@@ -63,8 +64,8 @@ void fb_shift_up(unsigned int distance)
 				//struct uc_pair2d pos = {(unsigned char)x,(unsigned char)y};
 				unsigned int line_pos_dest = FB_LINE_POS(x, y);
 				unsigned int line_pos_source = FB_LINE_POS(x, (y + 1));
-				FB_BYTE(line_pos_dest) = FB_BYTE(line_pos_source);
-				FB_BYTE(line_pos_dest + 1) = FB_BYTE(line_pos_source + 1);
+				FB_CELL(line_pos_dest) = FB_CELL(line_pos_source);
+				FB_CELL(line_pos_dest + 1) = FB_CELL(line_pos_source + 1);
 			}
 		}
 		fb_clear_line(24);
@@ -76,6 +77,6 @@ void fb_clear_line(unsigned char line)
 	for (unsigned int x = 0; x < FB_MAX_COLS; x++)
 	{
 		unsigned int line_pos  = FB_LINE_POS(x, line);
-		FB_BYTE(line_pos) = ' ';	
+		FB_CELL(line_pos) = ' ';	
 	}
 }
