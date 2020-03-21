@@ -28,7 +28,7 @@
 #define FB_CURSOR_LINE_POS(x, y) (FB_MAX_COLS * y + x)
 #define FB_COLOR_CODE_STRUCT_TO_UCHAR(fg, bg) ((fg & 0x0f) << 4) | (bg & 0x0f) //Takes two unsigned chars
 
-#define FB_MAX_LINE_POS (FB_LINE_POS(24, 79))
+#define FB_MAX_LINE_POS (FB_LINE_POS(79, 24))
 struct fb_color_code
 {
 	unsigned char fg;
