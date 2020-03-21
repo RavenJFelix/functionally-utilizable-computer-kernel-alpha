@@ -7,7 +7,7 @@
 #define FB_BYTE(x) *((char*) FRAME_BUFFER_ADR + x)
 #define FB_LINE_POS(x, y) 2 * (FB_MAX_COLS * y + x)
 #define FB_CURSOR_LINE_POS(x, y) (FB_MAX_COLS * y + x)
-#define FB_COLOR_CODE_STRUCT_TO_UCHAR(fg, bg) ((fg & 0x0f) << 4) | (bg & 0x0f) //Takes two unsigned chars
+#define FB_COLOR_CODE_TO_UCHAR(fg, bg) ((fg & 0x0f) << 4) | (bg & 0x0f) //Takes two unsigned chars
 
 struct fb_color_code
 {
