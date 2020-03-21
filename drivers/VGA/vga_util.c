@@ -1,6 +1,8 @@
 #include "vga_util.h"
 #include "vga_const.h"
 
+#include "bool.h"
+
 bool fb_line_pos_exceeds_max(unsigned int line_pos)
 {
 	return (line_pos > FB_MAX_LINE_POS);
