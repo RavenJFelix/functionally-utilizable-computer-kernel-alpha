@@ -33,6 +33,7 @@ void fb_write_string_direct_noNull(
 		position.x++;
 	}
 }
+
 void fb_write_string_wrap_auto(
 		struct uc_pair2d pos, 
 		const char *str, 
