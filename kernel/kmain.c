@@ -7,26 +7,16 @@ void kmain()
 	fb_clear_line(0);
 	struct fb_color_code wb = {0, 15};
 	char *frame_buffer = (char*) FRAME_BUFFER_ADR;
-	fb[2] = 'X';
-	fb_moveCursor( (struct uc_pair2d){10,10});
-	fb_write_char_simp(0, 'Z');
 	//char fuck_more[] = {"FFUFF$FFCK OH FFUCK OH FFUCK OH FFUCK OHFUCK OH FUCK OH FUCK\0"};
 	//char fuck[] = {"FUCK FUCK FUCK"};
 
-	//struct uc_pair2d po2 = {40,0};
-	//fb_write_string_wrap(po2, fuck_more, wb);
-	//fb_write_char_abstract((struct uc_pair2d){0,0}, 'A', wb);
+	char fuck_longer[] = {"THIasdlfjase;flkjae;lkja;selfjas;slekfjfas;lsekfjfaseskfjhaseklgjhasslkjehgS IS A LOT OF FUCKING TEST MASTERS GIVE ME MORE YES PLEASE AHHHH YES I LIKE IT I WANT MORE MAGIC NUMBERS SHOVE THEM UP MY USB PORT AND THROUGH MY SKULL \0"};
 
-
-
-	//char test_num[] = {"1234567890987654321\0"};
-//	struct uc_pair2d pos = {0,24};
-
-	fb_write_char_abstract((struct uc_pair2d){79,24}, 'B', wb);
 	//fb_write_char_abstract((struct uc_pair2d){0,24}, 'C', wb);
 	//fb_write_char_abstract((struct uc_pair2d){79,0}, 'C', wb);
+	fb_write_string_wrap_direct((struct uc_pair2d){0,24}, fuck_longer, wb);
+	
 
-	//char fuck_longer[] = {"THIS IS A LOT OF FUCKING TEST MASTERS GIVE ME MORE YES PLEASE AHHHH YES I LIKE IT I WANT MORE MAGIC NUMBERS SHOVE THEM UP MY USB PORT AND THROUGH MY SKULL \0"};
 
 	/*
 	fb_shift_up(1);
@@ -48,8 +38,7 @@ void kmain()
 				if(x_val >= move_length)
 				{
 					right = false;
-				}
-			}
+				} }
 			else
 			{
 				x_val--;

@@ -7,7 +7,6 @@
 #define FB_CURSE_DATA_PORT 0x3d5
 #define FB_CURSE_HIGH_COMMAND 14
 #define FB_CURSE_LOW_COMMAND 15
-#define MAX_LINE_POS (FB_LINE_POS(24, 79))
 
 #define NULL_TERMIN '\0'
 
@@ -28,19 +27,56 @@ void fb_write_char_simp(unsigned int line_pos, char c)
 	*((char*)FRAME_BUFFER_ADR + line_pos) = c;
 
 }
-void fb_write_string_wrap(struct uc_pair2d pos, const char *str, const struct fb_color_code color_code)
+void fb_write_string_wrap_auto(struct uc_pair2d pos, const char *str, const struct fb_color_code color_code)
 {
 
 	unsigned int str_index = 0;
-	unsigned int vga_cell_offset = 0;
-	unsigned int line_pos = FB_LINE_POS(pos.x, pos.y);
+	unsigned int current_vga_cell = FB_LINE_POS(pos.x, pos.y);
 	char current_char = str[str_index];
-	while(current_char != NULL_TERMIN && ! line_pos_exceeds_max(line_pos))
+	while(current_char != NULL_TERMIN)
 	{
 		//fb_write_char_abstract(pos, 'F', (struct fb_color_code){0, 15});
 		
-		fb_write_char((line_pos + vga_cell_offset), current_char, (FB_COLOR_CODE_STRUCT_TO_UCHAR(color_code.fg, color_code.bg)));
-		vga_cell_offset += 2; //Vga character cells are two bytes in length
+		fb_write_char((current_vga_cell), current_char, (FB_COLOR_CODE_STRUCT_TO_UCHAR(color_code.fg, color_code.bg)));
+		current_vga_cell += 2; //Vga character cells are two bytes in length
+		++str_index;
+		current_char = str[str_index];
+		if (line_pos_exceeds_max(current_vga_cell))
+		{
+			fb_shift_up(1);
+			current_vga_cell -= 2 * FB_MAX_COLS; // Multiply by two since cells take up two bytes
+		}
+	}
+}
+void fb_write_string_wrap_safe(struct uc_pair2d pos, const char *str, const struct fb_color_code color_code)
+{
+
+	unsigned int str_index = 0;
+	unsigned int current_vga_cell = FB_LINE_POS(pos.x, pos.y);
+	char current_char = str[str_index];
+	while(current_char != NULL_TERMIN && ! line_pos_exceeds_max(current_vga_cell))
+	{
+		//fb_write_char_abstract(pos, 'F', (struct fb_color_code){0, 15});
+		
+		fb_write_char((current_vga_cell), current_char, (FB_COLOR_CODE_STRUCT_TO_UCHAR(color_code.fg, color_code.bg)));
+		current_vga_cell += 2; //Vga character cells are two bytes in length
+		++str_index;
+		current_char = str[str_index];
+	}
+}
+
+void fb_write_string_wrap_direct(struct uc_pair2d pos, const char *str, const struct fb_color_code color_code)
+{
+
+	unsigned int str_index = 0;
+	unsigned int current_vga_cell = FB_LINE_POS(pos.x, pos.y);
+	char current_char = str[str_index];
+	while(current_char != NULL_TERMIN)
+	{
+		//fb_write_char_abstract(pos, 'F', (struct fb_color_code){0, 15});
+		
+		fb_write_char((current_vga_cell), current_char, (FB_COLOR_CODE_STRUCT_TO_UCHAR(color_code.fg, color_code.bg)));
+		current_vga_cell += 2; //Vga character cells are two bytes in length
 		++str_index;
 		current_char = str[str_index];
 	}
@@ -48,7 +84,7 @@ void fb_write_string_wrap(struct uc_pair2d pos, const char *str, const struct fb
 
 bool line_pos_exceeds_max(unsigned int line_pos)
 {
-	return (line_pos >= MAX_LINE_POS);
+	return (line_pos > FB_MAX_LINE_POS);
 }
 
 struct uc_pair2d fb_char_line_pos_to_pos(unsigned int line_pos)
