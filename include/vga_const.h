@@ -24,8 +24,11 @@
 #define FB_MAX_ROWS 25
 #define FB_MAX_COLS 80
 
+//Deal with vga device
 #define FB_CURSE_COMMAND_PORT  0x3d4
 #define FB_CURSE_DATA_PORT 0x3d5
+//When placed into the command port, tells VGA whether it's the high bits or
+//lower bits of the data placed into the data port
 #define FB_CURSE_HIGH_COMMAND 14
 #define FB_CURSE_LOW_COMMAND 15
 
