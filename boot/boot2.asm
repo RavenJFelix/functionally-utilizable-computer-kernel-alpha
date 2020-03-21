@@ -14,6 +14,8 @@ mov sp, bp
 ;int 0x10 ; Vega to text mode 3
 call load_kernel
 
+mov si, fuck
+call print
 call switch_to_pm
 ;mov ax, 0x2401
 ;int 0x15 ; Enable 20 to access more than 1 megabyte because fuck segment
@@ -58,6 +60,7 @@ mov gs, ax
 mov ss, ax ;Wot
 
 mov si, fuck
+call print_32
 
 call KERNEL_OFFSET
 
