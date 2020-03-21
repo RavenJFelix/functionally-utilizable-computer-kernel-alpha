@@ -137,15 +137,18 @@ void fb_write_string_direct_noNull(
 
 void fb_write_cell(unsigned int line_pos, char c, unsigned char color_code)
 {
-	//Write character to first byte of cell
-	FB_BYTE(line_pos) = c;
-	//Write character to the second byte of the cell
+	fb_write_char(line_pos, c);
 	fb_write_color(line_pos, color_code);
 }
 
 void fb_write_color(unsigned int cell_line_pos, unsigned char color_code)
 {
 	FB_BYTE(cell_line_pos + 1) = color_code; //The color code resides in the second byte
+}
+
+fb_write_char(unsigned int cell_line_pos, char c)
+{
+	FB_BYTE(cell_line_pos) = c;
 }
 
 void fb_write_cell_abstract(
