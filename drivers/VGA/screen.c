@@ -29,7 +29,7 @@ void fb_write_string_wrap_auto(
 
 	while(current_char != NULL_TERMIN)
 	{
-		fb_write_char(
+		fb_write_cell(
 				current_vga_cell,
 			   	current_char, 
 				(FB_COLOR_CODE_TO_UCHAR(color_code.fg, color_code.bg))); 
@@ -57,7 +57,7 @@ void fb_write_string_wrap_safe(
 	char current_char = str[str_index];
 	while(current_char != NULL_TERMIN && ! line_pos_exceeds_max(current_vga_cell))
 	{
-		fb_write_char(
+		fb_write_cell(
 				current_vga_cell,
 			   	current_char,
 			   	FB_COLOR_CODE_TO_UCHAR(color_code.fg, color_code.bg)
@@ -79,9 +79,9 @@ void fb_write_string_wrap_direct(
 	char current_char = str[str_index];
 	while(current_char != NULL_TERMIN)
 	{
-		//fb_write_char_abstract(pos, 'F', (struct fb_color_code){0, 15});
+		//fb_write_cell_abstract(pos, 'F', (struct fb_color_code){0, 15});
 		
-		fb_write_char(
+		fb_write_cell(
 				current_vga_cell,
 			   	current_char, 
 				FB_COLOR_CODE_TO_UCHAR(color_code.fg, color_code.bg)
@@ -114,7 +114,7 @@ void fb_write_string_direct(
 	struct uc_pair2d current_pos = fb_char_line_pos_to_pos(FB_LINE_POS(pos.x, pos.y));
 	while(str[i] != NULL_TERMIN)
 	{
-		fb_write_char_abstract(current_pos, str[i], color_code);
+		fb_write_cell_abstract(current_pos, str[i], color_code);
 		++current_pos.x;
 		++i;
 	}
@@ -130,12 +130,12 @@ void fb_write_string_direct_noNull(
 	struct uc_pair2d position = pos;
 	for(unsigned int i = 0;i < len;i++)
 	{
-		fb_write_char_abstract(position, string[i], color_code);
+		fb_write_cell_abstract(position, string[i], color_code);
 		position.x++;
 	}
 }
 
-void fb_write_char(unsigned int line_pos, char c, unsigned char color_code)
+void fb_write_cell(unsigned int line_pos, char c, unsigned char color_code)
 {
 	//Write character to first byte of cell
 	FB_BYTE(line_pos) = c;
@@ -143,14 +143,14 @@ void fb_write_char(unsigned int line_pos, char c, unsigned char color_code)
 	FB_BYTE(line_pos + 1) = color_code;
 }
 
-void fb_write_char_abstract(
+void fb_write_cell_abstract(
 		struct uc_pair2d pos,
 	   	char c,
 	   	struct fb_color_code color_code
 		)
 {
 	// Mask first four bits of fg and bg, move fg to first four bits of bg
-	fb_write_char(FB_LINE_POS(pos.x, pos.y), c, FB_COLOR_CODE_TO_UCHAR(color_code.fg, color_code.bg));
+	fb_write_cell(FB_LINE_POS(pos.x, pos.y), c, FB_COLOR_CODE_TO_UCHAR(color_code.fg, color_code.bg));
 }
 
 void fb_moveCursor(struct uc_pair2d pos)

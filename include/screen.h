@@ -22,8 +22,16 @@ void fb_clear_line(unsigned char line);
 void fb_moveCursor(struct uc_pair2d pos);
 void fb_shift_down(unsigned int distance);
 void fb_shift_up(unsigned int distance);
-void fb_write_char(unsigned int line_pos, char c, unsigned char color_code);
-void fb_write_char_abstract(struct uc_pair2d pos, char c, struct fb_color_code color_code);
+/** Writes character to framebuffer with color
+ */
+void fb_write_cell(unsigned int line_pos, char c, unsigned char color_code);
+/** Writes character but does not change the background
+ */
+void fb_write_char(unsigned int cell_line_pos, char c);
+/** Changes cell's color to the color code
+ */
+void fb_write_color_code(unsigned int cell_line_pos, unsigned char color_code);
+void fb_write_cell_abstract(struct uc_pair2d pos, char c, struct fb_color_code color_code);
 void fb_write_char_fast(unsigned char x, unsigned char y, char c, unsigned char fg, unsigned char bg);
 void fb_write_char_simp(unsigned int line_pos, char c);
 void fb_write_string_direct(struct uc_pair2d pos, const char* str, const struct fb_color_code color_code);
