@@ -26,7 +26,8 @@ char *fb = (char*) 0xb8000;
  */
 void fb_write_char_simp(unsigned int line_pos, char c)
 {
-	fb[line_pos] = c;
+	*((char*)FRAME_BUFFER_ADR + line_pos) = c;
+
 }
 void fb_write_string_wrap(struct uc_pair2d pos, const char *str, const struct fb_color_code color_code)
 {
