@@ -24,7 +24,7 @@ mov ebx, 0xb8000 ; VGA address
 lodsb ; Load data as esi into eax and increment to next chcaracter
 or al, al ; see if al is equal to null terminator
 jz .exit
-or eax, 0xf100 ; bytes: 1 background(blue) 2(foreground(white) 3-4 masks
+or eax, 0x9f00 ; bytes: 1 background(blue) 2(foreground(white) 3-4 masks
 mov word [ebx], ax ; Write to data
 add ebx, 2 ; Move to next VGA cell
 jmp .loop
