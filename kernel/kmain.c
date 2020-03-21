@@ -1,21 +1,21 @@
-#include "screen.h"
+
 #include "bool.h"
+#include "screen.h"
 void kmain()
 {
+	struct fb_color_code wb = {0, 15};
 	const int frame_adr = 0xb8002;
 	char *frame_buffer = (char*)frame_adr;
 	*frame_buffer = 'X';
+	fb_moveCursor( (struct uc_pair2d){10,10});
+	//char fuck_more[] = {"FFUFF$FFCK OH FFUCK OH FFUCK OH FFUCK OHFUCK OH FUCK OH FUCK\0"};
+	//char fuck[] = {"FUCK FUCK FUCK"};
 
-	char fuck_more[] = {"FFUFF$FFCK OH FFUCK OH FFUCK OH FFUCK OHFUCK OH FUCK OH FUCK\0"};
-	char fuck[] = {"FUCK FUCK FUCK"};
-
-	struct fb_color_code wb = {0, 15};
-	struct uc_pair2d po2 = {40,0};
-	fb_write_string_wrap(po2, fuck_more, wb);
-	fb_write_char_abstract((struct uc_pair2d){0,0}, 'A', wb);
+	//struct uc_pair2d po2 = {40,0};
+	//fb_write_string_wrap(po2, fuck_more, wb);
+	//fb_write_char_abstract((struct uc_pair2d){0,0}, 'A', wb);
 
 
-	fb_moveCursor( (struct uc_pair2d){0,0});
 
 	//char test_num[] = {"1234567890987654321\0"};
 //	struct uc_pair2d pos = {0,24};

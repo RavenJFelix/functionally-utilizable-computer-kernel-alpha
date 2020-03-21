@@ -4,7 +4,7 @@
 #include "pair2d.h"
 #include "io.h"
 #define FRAME_BUFFER_ADR 0x000b8000
-#define FB_CURSE_COMMAND_PORT  0x3D4
+#define FB_CURSE_COMMAND_PORT  0x3d4
 #define FB_CURSE_DATA_PORT 0x3d5
 #define FB_CURSE_HIGH_COMMAND 14
 #define FB_CURSE_LOW_COMMAND 15
