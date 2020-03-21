@@ -18,19 +18,20 @@ void kmain()
 	
 
 
-	/*
 	fb_shift_up(1);
+	struct fb_color_code col = {0, 120};
+	struct uc_pair2d pos = {0, 24};
 	bool right = true;
-	int move_length = 50;
+	int move_length = 60;
 	int x_val = 0;
 	int wait = 1;
-	int wait_time = 1;
-	fb_write_string_direct(pos, fuck_more, wb);
+	int wait_time = 10000000;
+	char fuck[] = {"FUCK OH FUCK OH FUCK"};
 	while(true)
 	{
 		if(wait == 0)
 		{
-			fb_write_string_direct(pos, fuck, wb);
+			fb_write_string_direct(pos, fuck, col);
 
 			if(right)
 			{
@@ -51,6 +52,8 @@ void kmain()
 			pos.x = x_val;
 			fb_shift_up(1);
 			wait = wait_time;
+			++col.bg;
+			++col.fg;
 		}
 		else
 		{
@@ -63,5 +66,4 @@ void kmain()
 	//	fb_write_char(pos, 'Z', wb);
 	//	fb_write_char(pos2, 'X', wb);
 	//}
-	*/
 }
