@@ -1,5 +1,6 @@
 #ifndef VGA_COLOR_CONSTANTS_H
 #define VGA_COLOR_CONSTANTS_H
+#include "vga_util.h"
 #define FB_BLACK  0;
 #define FB_BLUE = 1;
 #define FB_GREEN = 2;
