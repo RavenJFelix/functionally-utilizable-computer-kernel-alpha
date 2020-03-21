@@ -10,7 +10,7 @@ void fb_write_string_direct(
 {
 	unsigned int i = 0;
 	struct uc_pair2d current_pos = fb_char_line_pos_to_pos(FB_LINE_POS(pos.x, pos.y));
-	while(str[i] != NULL_TERMIN)
+	while(str[i] != STRING_NULL_TERMINATOR)
 	{
 		fb_write_cell_abstract(current_pos, str[i], color_code);
 		++current_pos.x;
@@ -42,7 +42,7 @@ void fb_write_string_wrap_auto(
 	unsigned int current_vga_cell = FB_LINE_POS(pos.x, pos.y);
 	char current_char = str[str_index];
 
-	while(current_char != NULL_TERMIN)
+	while(current_char != STRING_NULL_TERMINATOR)
 	{
 		fb_write_cell(
 				current_vga_cell,
@@ -70,7 +70,7 @@ void fb_write_string_wrap_direct(
 	unsigned int str_index = 0;
 	unsigned int current_vga_cell = FB_LINE_POS(pos.x, pos.y);
 	char current_char = str[str_index];
-	while(current_char != NULL_TERMIN)
+	while(current_char != STRING_NULL_TERMINATOR)
 	{
 		//fb_write_cell_abstract(pos, 'F', (struct fb_color_code){0, 15});
 		
@@ -94,7 +94,7 @@ void fb_write_string_wrap_safe(
 	unsigned int str_index = 0;
 	unsigned int current_vga_cell = FB_LINE_POS(pos.x, pos.y);
 	char current_char = str[str_index];
-	while(current_char != NULL_TERMIN && ! line_pos_exceeds_max(current_vga_cell))
+	while(current_char != STRING_NULL_TERMINATOR && ! line_pos_exceeds_max(current_vga_cell))
 	{
 		fb_write_cell(
 				current_vga_cell,
