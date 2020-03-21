@@ -4,7 +4,7 @@ print:
 pusha
 mov ah, 0x0e ; Set bios into TTY mode
 
-.loop
+.loop:
 lodsb
 or al, al ; See if zero flag is zero
 jz .exit
