@@ -1,34 +1,14 @@
 #ifndef SCREEN_H
 #define SCREEN_H
+#include "vga_const.h"
 #include "bool.h"
 #include "pair2d.h"
-#define FB_BLACK  0;
-#define FB_BLUE = 1;
-#define FB_GREEN = 2;
-#define FB_CYAN = 3;
-#define FB_RED = 4;
-#define FB_MAGENTA = 5;
-#define FB_BROWN = 6;
-#define FB_LIGHT_GREY = 7;
-#define FB_DARK_GREY = 8;
-#define FB_LIGHT_BLUE = 9;
-#define FB_LIGHT_GREEN = 10;
-#define FB_LIGHT_CYAN = 11;
-#define FB_LIGHT_RED = 12;
-#define FB_LIGHT_MAGENTA = 13;
-#define FB_LIGHT_BROWN = 14;
-#define FB_WHITE = 15;
 
-#define FB_MAX_ROWS 25
-#define FB_MAX_COLS 80
-
-#define FRAME_BUFFER_ADR 0x000b8000
 #define FB_BYTE(x) *((char*) FRAME_BUFFER_ADR + x)
 #define FB_LINE_POS(x, y) 2 * (FB_MAX_COLS * y + x)
 #define FB_CURSOR_LINE_POS(x, y) (FB_MAX_COLS * y + x)
 #define FB_COLOR_CODE_STRUCT_TO_UCHAR(fg, bg) ((fg & 0x0f) << 4) | (bg & 0x0f) //Takes two unsigned chars
 
-#define FB_MAX_LINE_POS (FB_LINE_POS(79, 24))
 struct fb_color_code
 {
 	unsigned char fg;
