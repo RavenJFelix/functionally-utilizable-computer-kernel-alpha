@@ -158,7 +158,11 @@ void fb_write_cell_abstract(
 		)
 {
 	// Mask first four bits of fg and bg, move fg to first four bits of bg
-	fb_write_cell(FB_LINE_POS(pos.x, pos.y), c, FB_COLOR_CODE_TO_UCHAR(color_code.fg, color_code.bg));
+	fb_write_cell(
+			FB_LINE_POS(pos.x, pos.y),
+		   	c,
+		   	FB_COLOR_CODE_TO_UCHAR(color_code.fg, color_code.bg)
+			);
 }
 
 void fb_moveCursor(struct uc_pair2d pos)
