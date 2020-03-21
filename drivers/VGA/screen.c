@@ -123,8 +123,8 @@ void fb_shift_up(unsigned int distance)
 				//struct uc_pair2d pos = {(unsigned char)x,(unsigned char)y};
 				unsigned int line_pos_dest = FB_LINE_POS(x, y);
 				unsigned int line_pos_source = FB_LINE_POS(x, (y + 1));
-				fb[line_pos_dest] = fb[line_pos_source];
-				fb[line_pos_dest + 1] = fb[line_pos_source + 1];
+				FB_BYTE(line_pos_dest) = FB_BYTE(line_pos_source);
+				FB_BYTE(line_pos_dest + 1) = FB_BYTE(line_pos_source + 1);
 			}
 		}
 		fb_clear_line(24);
