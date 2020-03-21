@@ -62,7 +62,7 @@ mov ss, ax ;Wot
 mov si, fuck
 call print_32
 
-call KERNEL_OFFSET
+hlt
 
 BOOT_DRIVE: db 0
 fuck: db "FUCK YEAH IN 32 BITS BABY!", 0
