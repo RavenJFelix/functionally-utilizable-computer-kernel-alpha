@@ -146,7 +146,7 @@ void fb_write_color(unsigned int cell_line_pos, unsigned char color_code)
 	FB_BYTE(cell_line_pos + 1) = color_code; //The color code resides in the second byte
 }
 
-fb_write_char(unsigned int cell_line_pos, char c)
+void fb_write_char(unsigned int cell_line_pos, char c)
 {
 	FB_BYTE(cell_line_pos) = c;
 }
