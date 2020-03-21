@@ -12,12 +12,15 @@ mov cl, 0x02 ; Start reading from the second sector
 
 int 0x13
 
-jc .disk_error ; Jump if there was a laoding error
-
+;jc .disk_error ; Jump if there was a laoding error
+;
 pop dx       ; 
-cmp dh, al
-jne .disk_error
+;cmp dh, al
+;jne .disk_error
 popa
+
+mov si, DISK_LOAD_INFO_MSG
+call print
 ret
 
 .disk_error:
@@ -27,3 +30,4 @@ call print
 hlt ; Halt execution
 
 DISK_ERROR_MSG: db "There is read error!!!", 0
+DISK_LOAD_INFO_MSG: db "The disk load message", 0

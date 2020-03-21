@@ -1,9 +1,10 @@
 #include "screen.h"
 #include "bool.h"
-void kmain()
+void main()
 {
 	//const int frame_adr = 0x000b8000;
 	//char *frame_buffer = (char*)frame_adr;
+	/*
 	struct fb_color_code wb = {0, 12};
 
 	char fuck_more[] = {"FFUFF$FFCK OH FFUCK OH FFUCK OH FFUCK OHFUCK OH FUCK OH FUCK\0"};
@@ -27,7 +28,6 @@ void kmain()
 	//int wait = 1;
 	//int wait_time = 1;
 	fb_write_string_direct(pos, fuck_more, wb);
-	/*
 	while(true)
 	{
 		if(wait == 0)
