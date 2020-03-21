@@ -3,11 +3,13 @@
 #include "screen.h"
 void kmain()
 {
+	char *fb = (char*) 0xb8000;
+	fb_clear_line(0);
 	struct fb_color_code wb = {0, 15};
-	const int frame_adr = 0xb8002;
-	char *frame_buffer = (char*)frame_adr;
-	*frame_buffer = 'X';
+	char *frame_buffer = (char*) FRAME_BUFFER_ADR;
+	fb[2] = 'X';
 	fb_moveCursor( (struct uc_pair2d){10,10});
+	fb_write_char_simp(0, 'Z');
 	//char fuck_more[] = {"FFUFF$FFCK OH FFUCK OH FFUCK OH FFUCK OHFUCK OH FUCK OH FUCK\0"};
 	//char fuck[] = {"FUCK FUCK FUCK"};
 
@@ -20,7 +22,7 @@ void kmain()
 	//char test_num[] = {"1234567890987654321\0"};
 //	struct uc_pair2d pos = {0,24};
 
-	//fb_write_char_abstract((struct uc_pair2d){79,24}, 'B', wb);
+	fb_write_char_abstract((struct uc_pair2d){79,24}, 'B', wb);
 	//fb_write_char_abstract((struct uc_pair2d){0,24}, 'C', wb);
 	//fb_write_char_abstract((struct uc_pair2d){79,0}, 'C', wb);
 

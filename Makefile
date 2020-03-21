@@ -2,10 +2,9 @@ CSOURCES =$(wildcard kernel/*.c drivers/*.c drivers/*/*.c)
 COBJ := $(CSOURCES:.c=.o)
 ASOURCES = $(wildcard kernel/*.s drivers/*.s)
 AOBJ = $(filter-out kernel/loader.o, ${ASOURCES:.s=.o})
-CINCLUDES = include
+CINCLUDES = ./include
 CC = gcc
-CFLAGS = -m32 -nostdlib -nostdinc -fno-builtin -fno-stack-protector \
-		 -nostartfiles -nodefaultlibs -Wall -Wextra -c
+CFLAGS = -m32 -ffreestanding -c
 LDFLAGS = -melf_i386 -Ttext 0x1000 --oformat binary
 AS = nasm
 ASFLAGS = -f elf

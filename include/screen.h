@@ -5,6 +5,7 @@
 #define FB_MAX_ROWS 25
 #define FB_MAX_COLS 80
 
+#define FRAME_BUFFER_ADR 0x000b8000
 #define FB_LINE_POS(x, y) 2 * (FB_MAX_COLS * y + x)
 #define FB_CURSOR_LINE_POS(x, y) (FB_MAX_COLS * y + x)
 #define FB_COLOR_CODE_STRUCT_TO_UCHAR(fg, bg) ((fg & 0x0f) << 4) | (bg & 0x0f) //Takes two unsigned chars
@@ -21,6 +22,7 @@ struct fb_state
 };
 
 
+void fb_write_char_simp(unsigned int line_pos, char c);
 bool line_pos_exceeds_max(unsigned int line_pos);
 void fb_write_string_wrap(struct uc_pair2d pos, const char *str, const struct fb_color_code color_code);
 struct uc_pair2d fb_char_line_pos_to_pos(unsigned int line_pos);

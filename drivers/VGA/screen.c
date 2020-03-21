@@ -3,7 +3,6 @@
 #include "stringConsts.h"
 #include "pair2d.h"
 #include "io.h"
-#define FRAME_BUFFER_ADR 0x000b8000
 #define FB_CURSE_COMMAND_PORT  0x3d4
 #define FB_CURSE_DATA_PORT 0x3d5
 #define FB_CURSE_HIGH_COMMAND 14
@@ -12,8 +11,7 @@
 
 #define NULL_TERMIN '\0'
 
-#define FB_COLOR_CODE_STRUCT_TO_UCHAR(fg, bg) ((fg & 0x0f) << 4) | (bg & 0x0f) //Takes two unsigned chars
-char *fb = (char*) FRAME_BUFFER_ADR;
+char *fb = (char*) 0xb8000;
 
 //void fb_printWrap_hasNull(const struct uc_pair2d* startPos, const char* str,const struct fb_color_code * colorCode)
 //{
@@ -26,7 +24,10 @@ char *fb = (char*) FRAME_BUFFER_ADR;
 /** Same as fb_write_char but uses two structs to pass data in a more intuitive
  * manner
  */
-
+void fb_write_char_simp(unsigned int line_pos, char c)
+{
+	fb[line_pos] = c;
+}
 void fb_write_string_wrap(struct uc_pair2d pos, const char *str, const struct fb_color_code color_code)
 {
 
