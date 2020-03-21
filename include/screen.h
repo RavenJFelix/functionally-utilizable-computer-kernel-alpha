@@ -6,8 +6,4 @@
 #include "bool.h"
 #include "pair2d.h"
 
-void fb_clear_line(unsigned char line);
-void fb_moveCursor(struct uc_pair2d pos);
-void fb_shift_down(unsigned int distance);
-void fb_shift_up(unsigned int distance);
 #endif
