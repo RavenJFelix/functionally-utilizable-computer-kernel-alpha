@@ -77,21 +77,23 @@ void fb_write_string_wrap_auto_cursor(
 	unsigned int current_vga_cell = FB_LINE_POS(pos.x, pos.y);
 	char current_char = str[str_index];
 
+	struct uc_pair2d cursor_pos = fb_char_line_pos_to_pair2d(current_vga_cell);
 	while(current_char != STRING_NULL_TERMINATOR)
 	{
+		cursor_pos = fb_char_line_pos_to_pair2d(current_vga_cell);
+		fb_move_cursor(cursor_pos);
 		fb_write_cell(
 				current_vga_cell,
 			   	current_char, 
 				(FB_COLOR_CODE_TO_UCHAR(color_code.fg, color_code.bg))); 
 
-		fb_move_cursor(fb_char_line_pos_to_pair2d(current_vga_cell));
 		current_vga_cell += 2; //Vga character cells are two bytes in length
 		++str_index;
 		current_char = str[str_index];
 
 		if (fb_line_pos_exceeds_max(current_vga_cell))
 		{
-			fb_shift_up(1);
+			fb_shift_up_cursor(1, cursor_pos);
 			current_vga_cell -= 2 * FB_MAX_COLS; // Multiply by two since cells take up two bytes
 		}
 	}

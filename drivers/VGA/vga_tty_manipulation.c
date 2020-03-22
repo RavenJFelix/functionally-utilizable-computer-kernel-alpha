@@ -52,7 +52,7 @@ void fb_shift_up_cursor(unsigned int distance, struct uc_pair2d cursor_pos)
 	if (cursor_pos.y > 0) // If the cursor is equal to 0 it is at the top and should not be moved
 	{
 		++cursor_pos.y;
-		fb_move_cursor(cursor_pos)
+		fb_move_cursor(cursor_pos);
 	}
 	}
 }

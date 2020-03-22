@@ -1,6 +1,8 @@
 #include "bool.h"
 #include "screen.h"
+#include "vga_tty_manipulation.h"
 #include "vga_const.h"
+#include "vga_tty_string.h"
 void kmain()
 {
 	char *fb = (char*) 0xb8000;
@@ -14,11 +16,11 @@ void kmain()
 
 	//fb_write_char_abstract((struct uc_pair2d){0,24}, 'C', wb);
 	//fb_write_char_abstract((struct uc_pair2d){79,0}, 'C', wb);
-	fb_write_string_wrap_direct(UC_PAIR2D(0,0), fuck_longer, FB_COLOR_CODE(0, 15));
+	fb_write_string_wrap_auto_cursor(UC_PAIR2D(0,24), fuck_longer, FB_COLOR_CODE(0, 15));
 	
 
 
-	fb_shift_up(1);
+	//fb_shift_up(1);
 	struct fb_color_code col = {0, 120};
 	struct uc_pair2d pos = {0, 24};
 	bool right = true;
@@ -27,6 +29,7 @@ void kmain()
 	int wait = 1;
 	int wait_time = 10000000;
 	char fuck[] = {"FUCK OH FUCK OH FUCK"};
+	/*
 	while(true)
 	{
 		if(wait == 0)
@@ -66,4 +69,5 @@ void kmain()
 	//	fb_write_char(pos, 'Z', wb);
 	//	fb_write_char(pos2, 'X', wb);
 	//}
+	*/
 }
