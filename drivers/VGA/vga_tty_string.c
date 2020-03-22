@@ -1,4 +1,7 @@
 #include "vga_tty_string.h"
+
+#include "vga_util.h"
+#include "vga_cursor.h"
 #include "vga_tty.h"
 #include "vga_util.h"
 #include "vga_tty_manipulation.h"
@@ -64,6 +67,35 @@ void fb_write_string_wrap_auto(
 	}
 }
 
+void fb_write_string_wrap_auto_cursor(
+		struct uc_pair2d pos, 
+		const char *str, 
+		const struct fb_color_code color_code
+		)
+{
+	unsigned int str_index = 0;
+	unsigned int current_vga_cell = FB_LINE_POS(pos.x, pos.y);
+	char current_char = str[str_index];
+
+	while(current_char != STRING_NULL_TERMINATOR)
+	{
+		fb_write_cell(
+				current_vga_cell,
+			   	current_char, 
+				(FB_COLOR_CODE_TO_UCHAR(color_code.fg, color_code.bg))); 
+
+		fb_move_cursor(fb_char_line_pos_to_pair2d(current_vga_cell));
+		current_vga_cell += 2; //Vga character cells are two bytes in length
+		++str_index;
+		current_char = str[str_index];
+
+		if (fb_line_pos_exceeds_max(current_vga_cell))
+		{
+			fb_shift_up(1);
+			current_vga_cell -= 2 * FB_MAX_COLS; // Multiply by two since cells take up two bytes
+		}
+	}
+}
 void fb_write_string_wrap_direct(
 		struct uc_pair2d pos,
 	   	const char *str,
