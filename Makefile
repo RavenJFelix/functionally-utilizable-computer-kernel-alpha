@@ -1,33 +1,38 @@
 CSOURCES =$(wildcard kernel/*.c drivers/*.c drivers/*/*.c) 
 COBJ := $(CSOURCES:.c=.o)
 ASOURCES = $(wildcard kernel/*.s drivers/*.s)
-AOBJ = $(filter-out kernel/loader.o, ${ASOURCES:.s=.o})
+AOBJ = $(filter-out boot/boot.o, ${ASOURCES:.s=.o})
 HEADERS = $(wildcard *.h */*.h */*/*.h */*/*/*.h */*/*/*/*.h)
 CINCLUDES = ./include
-CC = gcc
-CFLAGS = -m32 -ffreestanding -c
+CC = i686-elf-gcc
+CFLAGS = -std=gnu99 -ffreestanding -O2 -Wall -Wextra
 LDFLAGS = -melf_i386 -Ttext 0x1000 --oformat binary -T link.ld
 AS = nasm
-ASFLAGS = -f elf
+ASFLAGS = -felf32
+LINKER = i686-elf-ld
+LFLAGS = -T linker.ld  -O2 -nostdlib 
 
 all : os.iso
-boot/loader.o: boot/loader.s
-	nasm $< -f elf -o $@
+boot/boot.o: boot/boot.s
+	nasm $< $(ASFLAGS) -o $@
 
-kernel.bin : boot/loader.o $(COBJ) $(AOBJ) 
+kernel.bin : boot/boot.o $(COBJ) $(AOBJ) 
 	$(info $(CSOURCES:.c=.o))
 	$(info $(AOBJ))
-	ld $(LDFLAGS) boot/loader.o $(COBJ) $(AOBJ) -o $@
+	$(LINKER) -o $@ $(LFLAGS) boot/boot.o $(COBJ) $(AOBJ)
 
 os.iso: boot_sect.bin kernel.bin
-	cat boot_sect.bin kernel.bin > $@
+	mkdir -p iso/boot/grub
+	mv kernel.bin iso/boot/
+	cp grub.cfg iso/boot/grub
+	grub2-mkrescue -o $@ iso/
 	
 run: os.iso
 	#qemu-system-x86_64 $<
 	qemu-system-x86_64 -drive format=raw,file=$<
 
 %.o: %.c $(HEADERS)
-	$(CC) $(CFLAGS) -I $(CINCLUDES) $< -o $@
+	$(CC) -c $(CFLAGS) -I $(CINCLUDES) $< -o $@
 
 %.o: %.s
 	$(AS) $(ASFLAGS) $< -o $@
