@@ -3,7 +3,7 @@
 #include "vga_tty_manipulation.h"
 #include "vga_const.h"
 #include "vga_tty_string.h"
-void kmain()
+void kernel_main()
 {
 	char *fb = (char*) 0xb8000;
 	fb_clear_line(0);
@@ -29,7 +29,7 @@ void kmain()
 	int wait = 1;
 	int wait_time = 10000000;
 	char fuck[] = {"FUCK OH FUCK OH FUCK"};
-	/*
+
 	while(true)
 	{
 		if(wait == 0)
@@ -69,5 +69,5 @@ void kmain()
 	//	fb_write_char(pos, 'Z', wb);
 	//	fb_write_char(pos2, 'X', wb);
 	//}
-	*/
+
 }
