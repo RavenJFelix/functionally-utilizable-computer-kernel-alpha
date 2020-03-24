@@ -1,3 +1,5 @@
+#ifndef FUCK_YEAH_TERMINAL_CODE_OR_AT_LEAST_DISPLAY
+#define FUCK_YEAH_TERMINAL_CODE_OR_AT_LEAST_DISPLAY
 #include "pair2d.h"
 typedef struct 
 {
@@ -7,5 +9,5 @@ typedef struct
 
 }terminal_screen;
 
-
+#endif
 
