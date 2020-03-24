@@ -6,6 +6,7 @@
 #include "vga_util.h"
 #include "vga_tty_manipulation.h"
 #include "pair2d.h"
+#include "vga_const.h"
 #include "string_const.h"
 void fb_write_string_direct(
 		 uc_pair2d pos,
