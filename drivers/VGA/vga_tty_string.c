@@ -8,13 +8,13 @@
 #include "pair2d.h"
 #include "string_const.h"
 void fb_write_string_direct(
-		struct uc_pair2d pos,
+		 uc_pair2d pos,
 	   	const char* str,
-	   	const struct fb_color_code color_code
+	   	const  fb_color_code color_code
 		)
 {
 	unsigned int i = 0;
-	struct uc_pair2d current_pos = fb_char_line_pos_to_pair2d(FB_LINE_POS(pos.x, pos.y));
+	 uc_pair2d current_pos = fb_char_line_pos_to_pair2d(FB_LINE_POS(pos.x, pos.y));
 	while(str[i] != STRING_NULL_TERMINATOR)
 	{
 		fb_write_cell_abstract(current_pos, str[i], color_code);
@@ -24,13 +24,13 @@ void fb_write_string_direct(
 }
 
 void fb_write_string_direct_noNull(
-		struct uc_pair2d pos,
+		 uc_pair2d pos,
 	   	const char* string,
 	   	unsigned int len,
-	   	struct fb_color_code color_code
+	   	 fb_color_code color_code
 		)
 {
-	struct uc_pair2d position = pos;
+	 uc_pair2d position = pos;
 	for(unsigned int i = 0;i < len;i++)
 	{
 		fb_write_cell_abstract(position, string[i], color_code);
@@ -39,9 +39,9 @@ void fb_write_string_direct_noNull(
 }
 
 void fb_write_string_wrap_auto(
-		struct uc_pair2d pos, 
+		 uc_pair2d pos, 
 		const char *str, 
-		const struct fb_color_code color_code
+		const  fb_color_code color_code
 		)
 {
 	unsigned int str_index = 0;
@@ -68,16 +68,16 @@ void fb_write_string_wrap_auto(
 }
 
 void fb_write_string_wrap_auto_cursor(
-		struct uc_pair2d pos, 
+		 uc_pair2d pos, 
 		const char *str, 
-		const struct fb_color_code color_code
+		const  fb_color_code color_code
 		)
 {
 	unsigned int str_index = 0;
 	unsigned int current_vga_cell = FB_LINE_POS(pos.x, pos.y);
 	char current_char = str[str_index];
 
-	struct uc_pair2d cursor_pos = fb_char_line_pos_to_pair2d(current_vga_cell);
+	 uc_pair2d cursor_pos = fb_char_line_pos_to_pair2d(current_vga_cell);
 	while(current_char != STRING_NULL_TERMINATOR)
 	{
 		cursor_pos = fb_char_line_pos_to_pair2d(current_vga_cell);
@@ -99,9 +99,9 @@ void fb_write_string_wrap_auto_cursor(
 	}
 }
 void fb_write_string_wrap_direct(
-		struct uc_pair2d pos,
+		 uc_pair2d pos,
 	   	const char *str,
-	   	const struct fb_color_code color_code
+	   	const  fb_color_code color_code
 		)
 {
 	unsigned int str_index = 0;
@@ -109,7 +109,7 @@ void fb_write_string_wrap_direct(
 	char current_char = str[str_index];
 	while(current_char != STRING_NULL_TERMINATOR)
 	{
-		//fb_write_cell_abstract(pos, 'F', (struct fb_color_code){0, 15});
+		//fb_write_cell_abstract(pos, 'F', ( fb_color_code){0, 15});
 		
 		fb_write_cell(
 				current_vga_cell,
@@ -123,9 +123,9 @@ void fb_write_string_wrap_direct(
 }
 
 void fb_write_string_wrap_safe(
-		struct uc_pair2d pos,
+		 uc_pair2d pos,
 		const char *str,
-	   	const struct fb_color_code color_code
+	   	const  fb_color_code color_code
 		)
 {
 	unsigned int str_index = 0;
