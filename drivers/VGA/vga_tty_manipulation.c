@@ -17,7 +17,7 @@ void fb_shift_up(unsigned int distance)
 			for(unsigned int x =0; x < FB_MAX_COLS; x++)
 			{
 				//Copy The corresponding character from the row below
-				//struct uc_pair2d pos = {(unsigned char)x,(unsigned char)y};
+				// uc_pair2d pos = {(unsigned char)x,(unsigned char)y};
 				unsigned int line_pos_dest = FB_LINE_POS(x, y);
 				unsigned int line_pos_source = FB_LINE_POS(x, (y + 1));
 				FB_CELL(line_pos_dest) = FB_CELL(line_pos_source);
@@ -28,7 +28,7 @@ void fb_shift_up(unsigned int distance)
 	}
 }
 
-void fb_shift_up_cursor(unsigned int distance, struct uc_pair2d cursor_pos)
+void fb_shift_up_cursor(unsigned int distance,  uc_pair2d cursor_pos)
 {
 	//Repeat scrolling until
 	for(unsigned int i = 0; i < distance; ++i)
@@ -40,7 +40,7 @@ void fb_shift_up_cursor(unsigned int distance, struct uc_pair2d cursor_pos)
 			for(unsigned int x =0; x < FB_MAX_COLS; x++)
 			{
 				//Copy The corresponding character from the row below
-				//struct uc_pair2d pos = {(unsigned char)x,(unsigned char)y};
+				// uc_pair2d pos = {(unsigned char)x,(unsigned char)y};
 				unsigned int line_pos_dest = FB_LINE_POS(x, y);
 				unsigned int line_pos_source = FB_LINE_POS(x, (y + 1));
 				FB_CELL(line_pos_dest) = FB_CELL(line_pos_source);
