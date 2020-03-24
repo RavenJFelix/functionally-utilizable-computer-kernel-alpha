@@ -28,7 +28,7 @@ void fb_shift_up(unsigned int distance)
 	}
 }
 
-void fb_shift_up_cursor(unsigned int distance,  uc_pair2d cursor_pos)
+void fb_shift_up_cursor(unsigned int distance,  uc_pair2d *cursor_pos)
 {
 	//Repeat scrolling until
 	for(unsigned int i = 0; i < distance; ++i)
@@ -49,10 +49,10 @@ void fb_shift_up_cursor(unsigned int distance,  uc_pair2d cursor_pos)
 		}
 	fb_clear_line(24);
 	
-	if (cursor_pos.y > 0) // If the cursor is equal to 0 it is at the top and should not be moved
+	if (cursor_pos->y > 0) // If the cursor is equal to 0 it is at the top and should not be moved
 	{
-		++cursor_pos.y;
-		fb_move_cursor(cursor_pos);
+		++cursor_pos->y;
+		fb_move_cursor(*cursor_pos);
 	}
 	}
 }

@@ -94,7 +94,7 @@ void fb_write_string_wrap_auto_cursor(
 
 		if (fb_line_pos_exceeds_max(current_vga_cell))
 		{
-			fb_shift_up_cursor(1, current_cursor_pos);
+			fb_shift_up_cursor(1, &current_cursor_pos);
 			current_vga_cell -= 2 * FB_MAX_COLS; // Multiply by two since cells take up two bytes
 		}
 	}

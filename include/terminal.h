@@ -17,5 +17,8 @@ typedef struct
 
 
 void terminal_vga_print(Terminal* terminal, const char* string);
+void terminal_new_line(Terminal *terminal);
+void terminal_set_cursor(Terminal *terminal, const uc_pair2d *cursor_pos);
+void terminal_update_cursor(Terminal *terminal);
 #endif
 
