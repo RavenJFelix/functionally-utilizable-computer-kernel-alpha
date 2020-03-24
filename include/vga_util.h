@@ -12,7 +12,7 @@
 #define FB_COLOR_CODE_TO_UCHAR(fg, bg) ((fg & 0x0f) << 4) | (bg & 0x0f) //Takes two unsigned chars
 
 
-struct uc_pair2d fb_char_line_pos_to_pair2d(unsigned int line_pos);
+uc_pair2d fb_char_line_pos_to_pair2d(unsigned int line_pos);
 
 bool fb_line_pos_exceeds_max(unsigned int line_pos);
 
