@@ -2,7 +2,7 @@
 #define FUCKING_VGA_DATA_TYPES_H
 #include "pair2d.h"
 
-#define FB_COLOR_CODE(x, y) ((fb_color_code) {x, y})
+#define FB_COLOR_CODE(x, y) ((fb_color_code) {(unsigned char)x, (unsigned char)y})
 typedef struct 
 {
 	unsigned char fg;

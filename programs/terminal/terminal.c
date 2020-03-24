@@ -1,11 +1,8 @@
-#include "pair2d.h"
-typedef struct 
-{
+#include "terminal.h"
+#include "vga_tty_string.h"
 
-	uc_pair2d cursor_pos;
-	uc_pair2d screen_size;
-
-}terminal_screen;
-
-
+void terminal_vga_print(Terminal* terminal, const char* string)
+{	
+	fb_write_string_wrap_auto_cursor(&terminal->cursor_pos, string, terminal->default_color);
+}
 

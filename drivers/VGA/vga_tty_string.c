@@ -81,7 +81,7 @@ void fb_write_string_wrap_auto_cursor(
 	 uc_pair2d current_cursor_pos = fb_char_line_pos_to_pair2d(current_vga_cell);
 	while(current_char != STRING_NULL_TERMINATOR)
 	{
-		current_cursor_pos = fb_char_line_pos_to_pair2d(current_vga_cell);
+		current_cursor_pos = fb_char_line_pos_to_pair2d(current_vga_cell + 2);
 		fb_move_cursor(current_cursor_pos);
 		fb_write_cell(
 				current_vga_cell,
