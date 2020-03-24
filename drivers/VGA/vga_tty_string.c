@@ -69,20 +69,20 @@ void fb_write_string_wrap_auto(
 }
 
 void fb_write_string_wrap_auto_cursor(
-		 uc_pair2d pos, 
+		 uc_pair2d *cursor_pos, 
 		const char *str, 
 		const  fb_color_code color_code
 		)
 {
 	unsigned int str_index = 0;
-	unsigned int current_vga_cell = FB_LINE_POS(pos.x, pos.y);
+	unsigned int current_vga_cell = FB_LINE_POS(cursor_pos->x, cursor_pos->y);
 	char current_char = str[str_index];
 
-	 uc_pair2d cursor_pos = fb_char_line_pos_to_pair2d(current_vga_cell);
+	 uc_pair2d current_cursor_pos = fb_char_line_pos_to_pair2d(current_vga_cell);
 	while(current_char != STRING_NULL_TERMINATOR)
 	{
-		cursor_pos = fb_char_line_pos_to_pair2d(current_vga_cell);
-		fb_move_cursor(cursor_pos);
+		current_cursor_pos = fb_char_line_pos_to_pair2d(current_vga_cell);
+		fb_move_cursor(current_cursor_pos);
 		fb_write_cell(
 				current_vga_cell,
 			   	current_char, 
@@ -94,10 +94,11 @@ void fb_write_string_wrap_auto_cursor(
 
 		if (fb_line_pos_exceeds_max(current_vga_cell))
 		{
-			fb_shift_up_cursor(1, cursor_pos);
+			fb_shift_up_cursor(1, current_cursor_pos);
 			current_vga_cell -= 2 * FB_MAX_COLS; // Multiply by two since cells take up two bytes
 		}
 	}
+	*cursor_pos = current_cursor_pos;
 }
 void fb_write_string_wrap_direct(
 		 uc_pair2d pos,
