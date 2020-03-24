@@ -1,6 +1,6 @@
 #ifndef PAIR_2D_H
 #define PAIR_2D_H
-#define UC_PAIR2D(x, y) ((struct uc_pair2d) {x,y})
+#define UC_PAIR2D(x, y) ((uc_pair2d) {x,y})
 typedef struct
 {
 	unsigned char x;

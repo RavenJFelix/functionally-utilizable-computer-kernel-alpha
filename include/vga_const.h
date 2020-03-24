@@ -1,6 +1,5 @@
 #ifndef VGA_CONST_H
 #define VGA_CONST_H
-#include "screen.h"
 //Vga color codes
 #define FB_MAX_ROWS 25
 #define FB_MAX_COLS 80

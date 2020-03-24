@@ -1,5 +1,4 @@
 #include "bool.h"
-#include "screen.h"
 #include "vga_tty_manipulation.h"
 #include "vga_const.h"
 #include "vga_tty_string.h"
