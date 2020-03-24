@@ -3,16 +3,16 @@
 #include "pair2d.h"
 
 #define FB_COLOR_CODE(x, y) ((struct fb_color_code) {x, y})
-struct fb_color_code
+typedef struct 
 {
 	unsigned char fg;
 	unsigned char bg;
-};
+}fb_color_code;
 
 struct fb_state
 {
-	struct fb_color_code default_color;
-	struct uc_pair2d cursor_pos;
+	fb_color_code default_color;
+	uc_pair2d cursor_pos;
 };
 
 
