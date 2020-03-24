@@ -12,5 +12,6 @@ global inb
 ; in - reads byte from I/O port
 inb:
 ; stack [esp + 4] ; The port to be read from
-in [esp + 4], al
+mov dx, [esp + 4] ; Move the address to al
+in al, dx         ; Move
 ret
