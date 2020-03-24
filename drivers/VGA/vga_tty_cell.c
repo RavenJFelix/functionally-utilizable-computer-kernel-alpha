@@ -1,5 +1,6 @@
 #include "vga_tty_cell.h"
 #include "vga_util.h"
+#include "vga_const.h"
 
 
 	void fb_write_cell(unsigned int line_pos, char c, unsigned char color_code)
@@ -9,9 +10,9 @@
 	}
 
 	void fb_write_cell_abstract(
-			struct uc_pair2d pos,
+			 uc_pair2d pos,
 			char c,
-			struct fb_color_code color_code
+			 fb_color_code color_code
 			)
 {
 	// Mask first four bits of fg and bg, move fg to first four bits of bg

@@ -3,7 +3,7 @@
 #include "vga_util.h"
 #include "io.h"
 #include "pair2d.h"
-void fb_move_cursor(struct uc_pair2d pos)
+void fb_move_cursor( uc_pair2d pos)
 {
 	unsigned short line_pos = FB_CURSOR_LINE_POS(pos.x, pos.y);
 
