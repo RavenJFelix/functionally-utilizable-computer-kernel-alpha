@@ -2,7 +2,10 @@
 #include "interrupt.h"
 #include "pic.h"
 #include "vga_const_color.h"
-
+#include "kernel_globals.h"
+#include "keyboard.h"
+#include "terminal.h"
+const char FUCK[] = {"hello fucking fucksdfefiajesf;ailsjef"};
 void irq0_handler()
 {
 	pic_send_eoi();
@@ -10,8 +13,9 @@ void irq0_handler()
 
 void irq1_handler()
 {
-	fb_write_char(0, 'F');
-
+	terminal_vga_print(&main_terminal, FUCK);
+	//fb_write_char(0, 'F');
+	keyboard_read_scan_code();
 	pic_send_eoi();
 }
 
