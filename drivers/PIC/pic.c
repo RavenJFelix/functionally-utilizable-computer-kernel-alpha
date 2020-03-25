@@ -55,5 +55,6 @@ void pic_remap(int offset1, int offset2)
 
 void pic_send_eoi()
 {
-	outb(0x20, 0x20);
+		outb(PIC1_PORT_A, PIC_ACK);
+		outb(PIC2_PORT_A, PIC_ACK);
 }
