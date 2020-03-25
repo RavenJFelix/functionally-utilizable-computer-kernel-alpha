@@ -1,4 +1,5 @@
 #include "vga_tty_cell.h"
+
 #include "interrupt.h"
 #include "pic.h"
 #include "vga_const_color.h"
@@ -13,9 +14,9 @@ void irq0_handler()
 
 void irq1_handler()
 {
-	terminal_vga_print(&main_terminal, FUCK);
 	//fb_write_char(0, 'F');
-	keyboard_read_scan_code();
+	if( keyboard_read_scan_code() == 0x21)
+		terminal_vga_print(&main_terminal, FUCK);
 	pic_send_eoi();
 }
 
