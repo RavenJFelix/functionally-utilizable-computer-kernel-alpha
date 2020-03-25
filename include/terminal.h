@@ -13,7 +13,7 @@ typedef struct
 
 }Terminal;
 
-#define TERMINAL_DEFAULT ((Terminal){{0, 0},{FB_MAX_COLS, FB_MAX_ROWS}, FB_MATRIX_COLORZ})
+#define TERMINAL_DEFAULT (Terminal){UC_PAIR2D(0,0),{FB_MAX_COLS, FB_MAX_ROWS}, FB_MATRIX_COLORZ}
 
 
 void terminal_vga_print(Terminal* terminal, const char* string);
