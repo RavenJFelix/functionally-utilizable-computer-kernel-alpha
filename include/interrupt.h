@@ -2,11 +2,12 @@
 #define INTERRUPT_STUFF_H
 typedef struct
 {
-	unsigned short int offset_lowerbit;
+	unsigned short int offset_lowerbits;
 	unsigned short int selector;
 	unsigned char zero;
 	unsigned char type_attr;
-} idt_entry;
+	unsigned short int offset_higherbits;
+}__attribute__((packed)) idt_entry;
 typedef struct
 {
 	unsigned int eax;
@@ -29,4 +30,5 @@ typedef struct
 }__attribute__((packed)) stack_state;
 
 void interrupt_handler(cpu_state cpu, stack_state stack, unsigned int interrupt);
+void idt_init();
 #endif

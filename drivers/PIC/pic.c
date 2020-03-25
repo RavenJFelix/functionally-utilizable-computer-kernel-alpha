@@ -53,3 +53,7 @@ void pic_remap(int offset1, int offset2)
 	outb(PIC2_DATA, a2);
 }
 
+void pic_send_eoi()
+{
+	outb(0x20, 0x20);
+}

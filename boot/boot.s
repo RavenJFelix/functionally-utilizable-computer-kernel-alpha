@@ -6,6 +6,8 @@ FLAGS   equ MBALIGN | MEMINFO ; The flag field for the multiboot stuff
 MAGIC equ 0x1badb002 ; The magic number
 CHECKSUM equ -(MAGIC + FLAGS)
 
+%include "boot/gdt2.asm"
+[bits 32]
 ; Place the signature in it's own header so it must been within the 8Kib of the
 ; kernel file yaaas
 section .multiboot
@@ -24,14 +26,23 @@ stack_top:
 section .text
 global _start:function (_start.end - _start)
 _start:
-mov esp, stack_top ; Initialize stack
+lgdt [gdt_desc]
+jmp 0x0008:reset_cs
+.asdf:
 
-extern kernel_main
-call kernel_main
 
-
-cli
 .hang: hlt
 jmp .hang
 .end:
 
+reset_cs:
+mov ax, 0x0010
+mov ds, ax
+mov es, ax
+mov fs, ax
+mov gs, ax
+mov ss, ax
+mov esp, stack_top   ;set stack pointer
+extern kernel_main
+call kernel_main
+jmp $   ;halt the CPU
