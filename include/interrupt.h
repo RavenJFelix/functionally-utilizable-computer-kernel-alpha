@@ -1,6 +1,12 @@
 #ifndef INTERRUPT_STUFF_H
 #define INTERRUPT_STUFF_H
-
+typedef struct
+{
+	unsigned short int offset_lowerbit;
+	unsigned short int selector;
+	unsigned char zero;
+	unsigned char type_attr;
+} idt_entry;
 typedef struct
 {
 	unsigned int eax;
