@@ -6,6 +6,7 @@
 #include "kernel_globals.h"
 #include "keyboard.h"
 #include "terminal.h"
+#include "keyboard_validification.h"
 const char FUCK[] = {"hello fucking fucksdfefiajesf;ailsjef"};
 void irq0_handler()
 {
@@ -15,8 +16,12 @@ void irq0_handler()
 void irq1_handler()
 {
 	//fb_write_char(0, 'F');
-	if( keyboard_read_scan_code() == 0x21)
-		terminal_vga_print(&main_terminal, FUCK);
+	unsigned char scan_code = keyboard_read_scan_code();
+	if( keyboard_scancode_1_is_ascii_number(scan_code))
+	{
+		char asdf = (char)(scan_code + 0x2f);
+		terminal_vga_print(&main_terminal, &asdf);
+	}
 	pic_send_eoi();
 }
 
