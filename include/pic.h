@@ -1,3 +1,5 @@
+#ifndef PCI_STUFF
+#define PCI_STUFF
 #include "io.h"
 
 #define PIC1_PORT_A 0x20
@@ -9,3 +11,7 @@
 
 #define PIC_ACK 0x20
 
+void 
+
+void pic_remap(int offset1, int offset2);
+#endif
