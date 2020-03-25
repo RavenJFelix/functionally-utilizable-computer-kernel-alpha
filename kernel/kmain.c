@@ -3,6 +3,7 @@
 #include "pic.h"
 #include "bool.h"
 #include "keyboard.h"
+#include "kernel_globals.h"
 void kernel_main()
 {
 
@@ -12,8 +13,8 @@ void kernel_main()
 	char fuck[] = "FUCK\nASDF\nFOIAJEFPAOIJSEFFPAIJSE";
 	char testnew[] = "\nHELLO:";
 	
-	Terminal term = TERMINAL_DEFAULT;
-	//terminal_vga_print(&term, testnew);
+	terminal_vga_print(&main_terminal, testnew);
+	terminal_vga_print(&main_terminal, testnew);
 	//terminal_new_line(&term);
 	
 
