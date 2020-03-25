@@ -3,7 +3,7 @@
 #include "io.h"
 #define KEYBOARD_DATA_PORT 0x60
 
-unsigned char read_scan_code();
+unsigned char keyboard_read_scan_code();
 
 void keyboard_init();
 #endif
