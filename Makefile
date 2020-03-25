@@ -1,6 +1,6 @@
-CSOURCES =$(wildcard programs/*.c programs/*/*.c kernel/*.c drivers/*.c drivers/*/*.c) 
+CSOURCES =$(wildcard programs/*.c programs/*/*.c kernel/*.c kernel/*/*.c drivers/*.c drivers/*/*.c) 
 COBJ := $(CSOURCES:.c=.o)
-ASOURCES = $(wildcard kernel/*.s drivers/*.s)
+ASOURCES = $(wildcard kernel/*.s kernel/*/*.s drivers/*.s)
 AOBJ = $(filter-out boot/boot.o, ${ASOURCES:.s=.o})
 HEADERS = $(wildcard *.h */*.h */*/*.h */*/*/*.h */*/*/*/*.h)
 CINCLUDES = ./include
