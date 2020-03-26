@@ -5,7 +5,7 @@ bool keyboard_scancode_1_is_ascii(unsigned char scan_code)
 {
 	if
 		(keyboard_scancode_1_is_ascii_number(scan_code) 
-		&& keyboard_scancode_1_is_ascii_alphabet_character(scan_code)
+		&& keyboard_scancode_1_is_ascii_letter(scan_code)
 	  )
 	{
 		return true;
@@ -25,7 +25,8 @@ bool keyboard_scancode_1_is_ascii_number(unsigned char scan_code)
 	else
 		return false;
 }
-bool keyboard_scancode_1_is_ascii_alphabet_character(unsigned scan_code)
+
+bool keyboard_scancode_1_is_ascii_letter(unsigned char scan_code)
 {
 	//Certain regiosn of the scan codes are continuous, so as long as the scan
 	//code is within the range, it is valid
