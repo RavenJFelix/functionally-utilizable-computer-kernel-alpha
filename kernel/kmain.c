@@ -27,6 +27,12 @@ void kernel_main()
 						keyboard_scancode_1_to_ascii_number(scan_code)
 						);
 			}
+			else if(keyboard_scancode_1_is_ascii_letter(scan_code))
+			{
+				terminal_vga_print_char(&main_terminal,
+						keyboard_scancode_1_to_ascii_letter_uppercase(scan_code)
+						);
+			}
 
 		}
 	}
