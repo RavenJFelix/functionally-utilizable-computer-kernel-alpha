@@ -6,6 +6,16 @@ void uc_ring_buffer_increment_front(uc_ring_buffer *buffer)
 	buffer->front = buffer_wrapped_increment(buffer->front, buffer->length);
 }
 
+unsigned char uc_ring_buffer_read_front(uc_ring_buffer *buffer)
+{
+	return buffer->data[buffer->back];
+}
+
+unsigned char uc_ring_buffer_read_back(uc_ring_buffer *buffer)
+{
+	return buffer->data[buffer->back];;
+}
+
 void uc_ring_buffer_increment_back(uc_ring_buffer *buffer)
 {
 
