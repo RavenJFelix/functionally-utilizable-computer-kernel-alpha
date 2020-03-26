@@ -3,6 +3,7 @@
 #include "keyboard_scanset_1_const.h"
 #include "io.h"
 #include "keyboard.h"
+
 void keyboard_init(void)
 {
 	// )xfd = 11111101 which enables the keyboard)
@@ -13,5 +14,4 @@ unsigned char keyboard_read_scan_code()
 {
 	return inb(KEYBOARD_DATA_PORT);
 }
-
 
