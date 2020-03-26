@@ -56,41 +56,20 @@ void terminal_vga_print_char(Terminal *terminal, const char c)
 void terminal_vga_print(Terminal* terminal, const char* str)
 {	
 	 unsigned int str_index = 0;
-	 unsigned int current_vga_cell = FB_LINE_POS(terminal->cursor_pos.x, terminal->cursor_pos.y);
 	 char current_char = str[str_index];
-	 uc_pair2d current_cursor_pos = fb_char_line_pos_to_pair2d(current_vga_cell);
-
 	while(current_char != STRING_NULL_TERMINATOR)
 	{
 		if (current_char == '\n')
 		{
-			--current_cursor_pos.x;//The position is set 1 afer the current, so set it back so thigns are normal
-			terminal->cursor_pos = current_cursor_pos;
 			terminal_new_line(terminal);
-			current_cursor_pos = terminal->cursor_pos;
-			current_vga_cell = FB_LINE_POS(current_cursor_pos.x, current_cursor_pos.y);
 		}
 		else
 		{
-		current_cursor_pos = fb_char_line_pos_to_pair2d(current_vga_cell + 2);
-		fb_move_cursor(current_cursor_pos);
-		fb_write_cell(
-				current_vga_cell,
-			   	current_char, 
-				(FB_COLOR_CODE_TO_UCHAR(terminal->default_color.fg, terminal->default_color.bg))); 
-
-		current_vga_cell += 2; //Vga character cells are two bytes in length
+			terminal_vga_print_char(terminal, current_char);
 		}
 		++str_index;
 		current_char = str[str_index];
-
-		if (fb_line_pos_exceeds_max(current_vga_cell))
-		{
-			fb_shift_up_cursor(1, &current_cursor_pos);
-			current_vga_cell -= 2 * FB_MAX_COLS; // Multiply by two since cells take up two bytes
-		}
 	}
-	terminal->cursor_pos = current_cursor_pos;
 	terminal_update_cursor(terminal);
 }
 

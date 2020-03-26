@@ -10,11 +10,10 @@ void kernel_main()
 	
 	idt_init();
 	keyboard_init();
-	char fuck[] = "FUCK\nASDF\nFOIAJEFPAOIJSEFFPAIJSE";
+	char fuck[] = "FUCK\nASDF\nFOIAJEFPAOIJSEFFPAIJSE\0";
 	char testnew[] = "\nHELLO:";
 	
-	terminal_vga_print(&main_terminal, testnew);
-	terminal_vga_print(&main_terminal, testnew);
+	terminal_vga_print(&main_terminal, fuck);
 	//terminal_new_line(&term);
 	
 
