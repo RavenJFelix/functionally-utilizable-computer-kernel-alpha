@@ -5,6 +5,7 @@
 #include "keyboard.h"
 #include "kernel_globals.h"
 #include "keyboard_validification.h"
+#include "keyboard_ascii_conversion.h"
 #include "ring_buffer.h"
 void kernel_main()
 {
@@ -21,7 +22,10 @@ void kernel_main()
 			unsigned char scan_code = uc_ring_buffer_dequeue(&kernel_keyboard_buffer);
 			if(keyboard_scancode_1_is_ascii_number(scan_code))
 			{
-				terminal_vga_print_char(&main_terminal, scan_code + 0x2f);
+				terminal_vga_print_char(
+						&main_terminal,
+						keyboard_scancode_1_to_ascii_number(scan_code)
+						);
 			}
 
 		}
