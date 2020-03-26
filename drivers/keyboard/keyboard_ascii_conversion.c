@@ -12,31 +12,32 @@ void keyboard_scancode_1_call_pressed_and_released_main(void (*func) (unsigned c
 	//For the main block, scanset 1 repeats start at 0x80 for released
 	(*func)(scan_code + 0x80);
 }
-char keyboard_scancode_1_to_ascii(Keyboard *keyboard, unsigned char scan_code)
+
+char keyboard_scancode_1_pressed_to_ascii(Keyboard *keyboard, unsigned char scan_code)
 {
 	if(keyboard_scancode_1_is_ascii_number(scan_code))
 	{
-		return keyboard_scancode_1_to_ascii_number(scan_code);
+		return keyboard_scancode_1_pressed_to_ascii_number(scan_code);
 	}
 	else if(keyboard_scancode_1_is_ascii_letter(scan_code))
 	{
-		return keyboard_scancode_1_to_ascii_letter(scan_code, keyboard->caps);
+		return keyboard_scancode_1_pressed_to_ascii_letter(scan_code, keyboard->caps);
 	}
 }
 
-char keyboard_scancode_1_to_ascii_letter(unsigned char scan_code, bool caps)
+char keyboard_scancode_1_pressed_to_ascii_letter(unsigned char scan_code, bool caps)
 {
 	if(caps)
 	{
-		return keyboard_scancode_1_to_ascii_letter_uppercase(scan_code);
+		return keyboard_scancode_1_pressed_to_ascii_letter_uppercase(scan_code);
 	}
 	else
 	{
-		return keyboard_scancode_1_to_ascii_letter_lowercase(scan_code);
+		return keyboard_scancode_1_pressed_to_ascii_letter_lowercase(scan_code);
 	}
 
 }
-char keyboard_scancode_1_to_ascii_number(unsigned char scan_code)
+char keyboard_scancode_1_pressed_to_ascii_number(unsigned char scan_code)
 {
 	if(scan_code == KBDSC1_0_P)
 	{
@@ -55,7 +56,7 @@ char keyboard_scancode_1_to_ascii_number(unsigned char scan_code)
 	}
 }
 
-char keyboard_scancode_1_to_ascii_letter_lowercase(unsigned char scan_code)
+char keyboard_scancode_1_pressed_to_ascii_letter_lowercase(unsigned char scan_code)
 {
 	/* Repead after me:
 	 * There can be hexadecimal hacks between ascii letters
@@ -67,7 +68,7 @@ char keyboard_scancode_1_to_ascii_letter_lowercase(unsigned char scan_code)
 	 * In ascii, A is at 0x41 while a is at 0x61
 	 * That equals 0x20
 	 */
-	return 0x20 + keyboard_scancode_1_to_ascii_letter_uppercase(scan_code);
+	return 0x20 + keyboard_scancode_1_pressed_to_ascii_letter_uppercase(scan_code);
 
 
 }
@@ -105,10 +106,10 @@ char keyboard_scancode_1_pressed_to_ascii_letter_uppercase(unsigned char scan_co
 	//Check for ascii code row two
 	else if(KBDSC1_A_P <= scan_code && scan_code <= KBDSC1_L_P)
 	{
-		return ascii_row_1_set[scan_code - KBDSC1_A_P];
+		return ascii_row_2_set[scan_code - KBDSC1_A_P];
 	}
 	else if(KBDSC1_Z_P <= scan_code && scan_code <= KBDSC1_M_P)
 	{
-		return ascii_row_1_set[scan_code - KBDSC1_Z_P];
+		return ascii_row_3_set[scan_code - KBDSC1_Z_P];
 	}
 }
