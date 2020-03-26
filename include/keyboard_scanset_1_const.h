@@ -92,7 +92,99 @@
 //#define KBDSC1_KEYPAD_2_P 0X56
 #define KBDSC1_F11_P 0X57
 #define KBDSC1_F12_P 0X58
+#define KBDSC1_ESCAPE_P 0x01
+#define KBDSC1_ESCAPE_P 0x01
 
-#define KBDSC1_LEFT_SHIFT_R 0xaa
-#define KBDSC1_RIGHT_SHIFT_R 0xb6
+
+//Scan codes for released keys are simply their Pressed counterparts + 0x80
+#define KBDSC1_1_R 0x80 + 0x02
+#define KBDSC1_2_R 0x80 + 0X03
+#define KBDSC1_3_R 0x80 + 0X04
+#define KBDSC1_4_R 0x80 + 0X05
+#define KBDSC1_5_R 0x80 + 0X06
+#define KBDSC1_6_R 0x80 + 0X07
+#define KBDSC1_7_R 0x80 + 0X08
+#define KBDSC1_8_R 0x80 + 0X09
+#define KBDSC1_9_R 0x80 + 0X0a
+#define KBDSC1_0_R 0x80 + 0X0b
+#define KBDSC1_MINUS_R 0x80 + 0X0c
+#define KBDSC1_EQUAL_R 0x80 + 0X0d
+#define KBDSC1_BACKSPACE_R 0x80 + 0X0e
+#define KBDSC1_TAB_R 0x80 + 0X0f
+#define KBDSC1_Q_R 0x80 + 0X10
+#define KBDSC1_W_R 0x80 + 0X11
+#define KBDSC1_E_R 0x80 + 0X12
+#define KBDSC1_R_R 0x80 + 0X13
+#define KBDSC1_T_R 0x80 + 0X14
+#define KBDSC1_Y_R 0x80 + 0X15
+#define KBDSC1_U_R 0x80 + 0X16
+#define KBDSC1_I_R 0x80 + 0X17
+#define KBDSC1_O_R 0x80 + 0X18
+#define KBDSC1_P_R 0x80 + 0X19
+#define KBDSC1_LEFT_BRACKET_R 0x80 + 0X1a
+#define KBDSC1_RIGHT_BRACKET_R 0x80 + 0X1b
+#define KBDSC1_ENTER_R 0x80 + 0X1c
+#define KBDSC1_LEFT_CTRL_R 0x80 + 0X1d
+#define KBDSC1_A_R 0x80 + 0X1e
+#define KBDSC1_S_R 0x80 + 0X1f
+#define KBDSC1_D_R 0x80 + 0X20
+#define KBDSC1_F_R 0x80 + 0X21
+#define KBDSC1_G_R 0x80 + 0X22
+#define KBDSC1_H_R 0x80 + 0X23
+#define KBDSC1_J_R 0x80 + 0X24
+#define KBDSC1_K_R 0x80 + 0X25
+#define KBDSC1_L_R 0x80 + 0X26
+#define KBDSC1_SEMICOLON_R 0x80 + 0X27 // ;
+#define KBDSC1_SINGLE_QUOTE_R 0x80 + 0X28 // '
+#define KBDSC1_BACK_TICK_R 0x80 + 0X29 // `
+#define KBDSC1_LEFT_SHIFT_R 0x80 + 0X2a
+#define KBDSC1_BACKSLASH_R 0x80 + 0X2b // \  //
+#define KBDSC1_Z_R 0x80 + 0X2c
+#define KBDSC1_X_R 0x80 + 0X2d
+#define KBDSC1_C_R 0x80 + 0X2e
+#define KBDSC1_V_R 0x80 + 0X2f
+#define KBDSC1_B_R 0x80 + 0X30
+#define KBDSC1_N_R 0x80 + 0X31
+#define KBDSC1_M_R 0x80 + 0X32
+#define KBDSC1_COMMA_R 0x80 + 0X33
+#define KBDSC1_PERIOD_R 0x80 + 0X34 // .
+#define KBDSC1_FORWARD_SLASH_R 0x80 + 0X35
+#define KBDSC1_RIGHT_SHIFT_R 0x80 + 0X36
+#define KBDSC1_KEYPAD_STAR_R 0x80 + 0X37 // (keypad) *
+#define KBDSC1_LEFT_ALT_R 0x80 + 0X38
+#define KBDSC1_SPACE_R 0x80 + 0X39
+#define KBDSC1_CAPS_LOCK_R 0x80 + 0X3a
+#define KBDSC1_F1_R 0x80 + 0X3b
+#define KBDSC1_F2_R 0x80 + 0X3c
+#define KBDSC1_F3_R 0x80 + 0X3d
+#define KBDSC1_F4_R 0x80 + 0X3e
+#define KBDSC1_F5_R 0x80 + 0X3f
+#define KBDSC1_F6_R 0x80 + 0X40
+#define KBDSC1_F7_R 0x80 + 0X41
+#define KBDSC1_F8_R 0x80 + 0X42
+#define KBDSC1_F9_R 0x80 + 0X43
+#define KBDSC1_10_R 0x80 + 0X44
+#define KBDSC1_NUM_LOCK_R 0x80 + 0X45
+#define KBDSC1_SCROLL_LOCK_R 0x80 + 0X46
+#define KBDSC1_KEYPAD_7_R 0x80 + 0X47
+#define KBDSC1_KEYPAD_8_R 0x80 + 0X48
+#define KBDSC1_KEYPAD_9_R 0x80 + 0X49
+#define KBDSC1_KEYPAD_MINUS_R 0x80 + 0X4a
+#define KBDSC1_KEYPAD_4_R 0x80 + 0X4b
+#define KBDSC1_KEYPAD_5_R 0x80 + 0X4c
+#define KBDSC1_KEYPAD_6_R 0x80 + 0X4d
+#define KBDSC1_KEYPAD_PLUS_R 0x80 + 0X4e
+#define KBDSC1_KEYPAD_1_R 0x80 + 0X4f
+#define KBDSC1_KEYPAD_2_R 0x80 + 0X50
+#define KBDSC1_KEYPAD_3_R 0x80 + 0X51
+#define KBDSC1_KEYPAD_0_R 0x80 + 0X52
+#define KBDSC1_KEYPAD_PERIOD_R 0x80 + 0X53
+//#define KBDSC1_KEYPAD__R 0x80 + 0X54
+//#define KBDSC1_KEYPAD_2_R 0x80 + 0X55
+//#define KBDSC1_KEYPAD_2_R 0x80 + 0X56
+#define KBDSC1_F11_R 0x80 + 0X57
+#define KBDSC1_F12_R 0x80 + 0X58
+#define KBDSC1_ESCAPE_R 0x80 + 0x01
+
+
 #endif
