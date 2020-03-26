@@ -20,7 +20,7 @@ void irq1_handler()
 	if( keyboard_scancode_1_is_ascii_number(scan_code))
 	{
 		char asdf = (char)(scan_code + 0x2f);
-		terminal_vga_print(&main_terminal, &asdf);
+		terminal_vga_print_char(&main_terminal, asdf);
 	}
 	pic_send_eoi();
 }
