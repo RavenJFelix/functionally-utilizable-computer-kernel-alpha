@@ -1,6 +1,32 @@
+#include "keyboard.h"
+#include "keyboard_validification.h"
 #include "keyboard_ascii_conversion.h"
 #include "keyboard_scanset_1_const.h"
 
+char keyboard_scancode_1_to_ascii(Keyboard *keyboard, unsigned char scan_code)
+{
+	if(keyboard_scancode_1_is_ascii_number(scan_code))
+	{
+		return keyboard_scancode_1_to_ascii_number(scan_code);
+	}
+	else if(keyboard_scancode_1_is_ascii_letter(scan_code))
+	{
+		return keyboard_scancode_1_to_ascii_letter(scan_code, keyboard->caps);
+	}
+}
+
+char keyboard_scancode_1_to_ascii_letter(unsigned char scan_code, bool caps)
+{
+	if(caps)
+	{
+		return keyboard_scancode_1_to_ascii_letter_uppercase(scan_code);
+	}
+	else
+	{
+		return keyboard_scancode_1_to_ascii_letter_lowercase(scan_code);
+	}
+
+}
 char keyboard_scancode_1_to_ascii_number(unsigned char scan_code)
 {
 	if(scan_code == KBDSC1_0_P)
