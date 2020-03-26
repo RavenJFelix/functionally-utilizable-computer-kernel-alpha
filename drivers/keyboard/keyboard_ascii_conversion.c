@@ -3,6 +3,9 @@
 #include "keyboard_ascii_conversion.h"
 #include "keyboard_scanset_1_const.h"
 
+const char ascii_row_1_set[] = {"QWERTYUIOP"};
+const char ascii_row_2_set[] = {"ASDFGHJKL"};
+const char ascii_row_3_set[] = {"ZXCVBNM"};
 void keyboard_scancode_1_call_pressed_and_released_main(void (*func) (unsigned char), unsigned char scan_code)
 {
 	(*func)(scan_code);
@@ -68,7 +71,7 @@ char keyboard_scancode_1_to_ascii_letter_lowercase(unsigned char scan_code)
 
 
 }
-char keyboard_scancode_1_to_ascii_letter_uppercase(unsigned char scan_code)
+char keyboard_scancode_1_pressed_to_ascii_letter_uppercase(unsigned char scan_code)
 {
 
 	/* Repead after me:
@@ -81,87 +84,31 @@ char keyboard_scancode_1_to_ascii_letter_uppercase(unsigned char scan_code)
 	 * Time for some hackz!!!
 	 * Wait. never mind.
 	 * Fuck.
+	 *
+	 * The above is kept for historical reasons. There is a look
+	 * up array. I just have to subract the offset. I am a fucking genius.
+	 * And an idiot.
 	 */
 
-	switch(scan_code)
+	/* Letters are grouped in rows wtihin the scan code.
+	 * The first letter grouped is QWERTYUIOP
+	 * Thus, if one were to subectract them such
+	 * that the scancode Q is equal to 0
+	 * One could feed that into an array to obtain Q and so forth
+	 */
+	
+	//Check for ascii code row one
+	if(KBDSC1_Q_P <= scan_code && scan_code <= KBDSC1_P_P)
 	{
-		case KBDSC1_A_P:
-		return 'A';
-
-		case KBDSC1_B_P:
-		return 'B';
-
-		case KBDSC1_C_P:
-		return 'C';
-
-		case KBDSC1_D_P:
-		return 'D';
-		
-		case KBDSC1_E_P:
-		return 'E';
-		
-		case KBDSC1_F_P:
-		return 'F';
-
-		case KBDSC1_G_P:
-		return 'G';
-
-		case KBDSC1_H_P:
-		return 'H';
-
-		case KBDSC1_I_P:
-		return 'I';
-
-		case KBDSC1_J_P:
-		return 'J';
-
-		case KBDSC1_K_P:
-		return 'K';
-
-		case KBDSC1_L_P:
-		return 'L';
-
-		case KBDSC1_M_P:
-		return 'M';
-
-		case KBDSC1_N_P:
-		return 'N';
-		
-		case KBDSC1_O_P:
-		return 'O';
-
-		case KBDSC1_P_P:
-		return 'P';
-
-		case KBDSC1_Q_P:
-		return 'Q';
-
-		case KBDSC1_R_P:
-		return 'R';
-
-		case KBDSC1_S_P:
-		return 'S';
-
-		case KBDSC1_T_P:
-		return 'T';
-
-		case KBDSC1_U_P:
-		return 'U';
-
-		case KBDSC1_V_P:
-		return 'V';
-
-		case KBDSC1_W_P:
-		return 'W';
-
-		case KBDSC1_X_P:
-		return 'X';
-
-		case KBDSC1_Y_P:
-		return 'Y';
-
-		case KBDSC1_Z_P:
-		return 'Z';
+		return ascii_row_1_set[scan_code - KBDSC1_Q_P];
 	}
-
+	//Check for ascii code row two
+	else if(KBDSC1_A_P <= scan_code && scan_code <= KBDSC1_L_P)
+	{
+		return ascii_row_1_set[scan_code - KBDSC1_A_P];
+	}
+	else if(KBDSC1_Z_P <= scan_code && scan_code <= KBDSC1_M_P)
+	{
+		return ascii_row_1_set[scan_code - KBDSC1_Z_P];
+	}
 }
