@@ -33,13 +33,13 @@ void kernel_main()
 				kernel_keyboard.caps=false;
 			}
 
-			if(keyboard_scancode_1_is_ascii(scan_code))
+			//if(keyboard_scancode_1_is_ascii(scan_code))
 			{
 				print = keyboard_scancode_1_to_ascii(&kernel_keyboard, scan_code);
 
 				terminal_vga_print_char(
 						&main_terminal,
-						print
+						scan_code
 						);
 			}
 		}

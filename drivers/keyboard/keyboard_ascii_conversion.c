@@ -3,6 +3,12 @@
 #include "keyboard_ascii_conversion.h"
 #include "keyboard_scanset_1_const.h"
 
+void keyboard_scancode_1_call_pressed_and_released_main(void (*func) (unsigned char), unsigned char scan_code)
+{
+	(*func)(scan_code);
+	//For the main block, scanset 1 repeats start at 0x80 for released
+	(*func)(scan_code + 0x80);
+}
 char keyboard_scancode_1_to_ascii(Keyboard *keyboard, unsigned char scan_code)
 {
 	if(keyboard_scancode_1_is_ascii_number(scan_code))

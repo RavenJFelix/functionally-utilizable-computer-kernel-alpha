@@ -186,5 +186,5 @@
 #define KBDSC1_F12_R 0x80 + 0X58
 #define KBDSC1_ESCAPE_R 0x80 + 0x01
 
-
+//All of these are preceeded with E0
 #endif

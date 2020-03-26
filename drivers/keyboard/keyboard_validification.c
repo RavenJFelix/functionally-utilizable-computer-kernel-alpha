@@ -3,6 +3,19 @@
 #include "keyboard_scanset_1_const.h"
 
 
+bool keyboard_scancode_1_is_pressed(unsigned char scan_code)
+{
+	return((KBDSC1_ESCAPE_P <= scan_code 
+			&& scan_code <= KBDSC1_KEYPAD_PERIOD_P) 
+			|| (scan_code == KBDSC1_F11_P &&
+			   scan_code ==	KBDSC1_F12_P)); 
+}
+
+bool keyboard_scancode_1_is_released(unsigned char scan_code)
+{
+	return !(keyboard_scancode_1_is_pressed(scan_code));
+}
+
 bool keyboard_scancode_1_is_ascii(unsigned char scan_code)
 {
 	if
