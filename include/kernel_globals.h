@@ -1,6 +1,7 @@
 #ifndef	HOLY_SHIT_THESE_ARE_GLOBAL_VARIABLES_USED_BY_THE_KERNEL_FUCK_OH_FUCK_THE_MAGICNESS_
 #define	HOLY_SHIT_THESE_ARE_GLOBAL_VARIABLES_USED_BY_THE_KERNEL_FUCK_OH_FUCK_THE_MAGICNESS_
 #include "terminal.h"
-
+#include "ring_buffer.h"
 extern Terminal main_terminal;
+extern uc_ring_buffer *kernel_keyboard_buffer;
 #endif
