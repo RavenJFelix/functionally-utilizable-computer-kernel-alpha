@@ -1,11 +1,13 @@
+#include "keyboard.h"
 #include "keyboard_validification.h"
 #include "keyboard_scanset_1_const.h"
+
 
 bool keyboard_scancode_1_is_ascii(unsigned char scan_code)
 {
 	if
 		(keyboard_scancode_1_is_ascii_number(scan_code) 
-		&& keyboard_scancode_1_is_ascii_letter(scan_code)
+		|| keyboard_scancode_1_is_ascii_letter(scan_code)
 	  )
 	{
 		return true;
