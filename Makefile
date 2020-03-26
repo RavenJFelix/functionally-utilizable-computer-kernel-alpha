@@ -1,4 +1,5 @@
-CSOURCES =$(wildcard programs/*.c programs/*/*.c kernel/*.c kernel/*/*.c drivers/*.c drivers/*/*.c) 
+CSOURCES =$(wildcard programs/*.c programs/*/*.c kernel/*.c kernel/*/*.c drivers/*.c drivers/*/*.c rtl/*.c rtl/*/*.c)
+
 COBJ := $(CSOURCES:.c=.o)
 ASOURCES = $(wildcard kernel/*.s kernel/*/*.s drivers/*.s)
 AOBJ = $(filter-out boot/boot.o, ${ASOURCES:.s=.o})
