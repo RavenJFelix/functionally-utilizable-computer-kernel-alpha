@@ -34,9 +34,13 @@ void terminal_vga_print_char(Terminal *terminal, const char c)
 {
 	unsigned int line_pos =  FB_LINE_POS(terminal->cursor_pos.x, terminal->cursor_pos.y);
 	
-	fb_write_char(line_pos, c);
+	fb_write_cell(line_pos,
+		   	c,
+		   	FB_COLOR_CODE_TO_UCHAR(terminal->default_color.fg,
+			   	terminal->default_color.bg)
+			);
 	line_pos += 2;
-	if(line_pos < FB_MAX_LINE_POS)
+	if(line_pos > FB_MAX_LINE_POS)
 	{
 		fb_shift_up(1);
 		terminal->cursor_pos = UC_PAIR2D(0, 24); //Set cursor to bottom left
@@ -45,6 +49,8 @@ void terminal_vga_print_char(Terminal *terminal, const char c)
 	{
 		terminal->cursor_pos = fb_char_line_pos_to_pair2d(line_pos);
 	}
+
+	terminal_update_cursor(terminal);
 }
 
 void terminal_vga_print(Terminal* terminal, const char* str)
