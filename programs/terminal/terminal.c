@@ -30,7 +30,7 @@ void termina_vga_new_line(Terminal *terminal, const char c)
 
 }
 
-void terminal_vga_print_char(Termminal *terminal, const char c)
+void terminal_vga_print_char(Terminal *terminal, const char c)
 {
 	unsigned int line_pos =  FB_LINE_POS(terminal->cursor_pos.x, terminal->cursor_pos.y);
 	
