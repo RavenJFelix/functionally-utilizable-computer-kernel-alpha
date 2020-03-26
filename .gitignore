@@ -6,4 +6,5 @@
 *.elf
 *.iso
 /iso
+*.swo
 
