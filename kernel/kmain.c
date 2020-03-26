@@ -30,7 +30,7 @@ void kernel_main()
 			else if(keyboard_scancode_1_is_ascii_letter(scan_code))
 			{
 				terminal_vga_print_char(&main_terminal,
-						keyboard_scancode_1_to_ascii_letter_uppercase(scan_code)
+						keyboard_scancode_1_to_ascii_letter_lowercase(scan_code)
 						);
 			}
 

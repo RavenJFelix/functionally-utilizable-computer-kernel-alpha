@@ -2,4 +2,5 @@
 #define KEYBOARD_ASCII_CONVERSION_RANDOMNESS_STUFF
 char keyboard_scancode_1_to_ascii_number(unsigned char scan_code);
 char keyboard_scancode_1_to_ascii_letter_uppercase(unsigned char scan_code);
+char keyboard_scancode_1_to_ascii_letter_lowercase(unsigned char scan_code);
 #endif

@@ -20,6 +20,22 @@ char keyboard_scancode_1_to_ascii_number(unsigned char scan_code)
 	}
 }
 
+char keyboard_scancode_1_to_ascii_letter_lowercase(unsigned char scan_code)
+{
+	/* Repead after me:
+	 * There can be hexadecimal hacks between ascii letters
+	 * There can be hexadecimal hacks between ascii letters
+	 * There can be hexadecimal hacks between ascii letters
+	 * And I should fucking ackwnoledge that and move on.
+	 *
+	 * Fuck yeahh.
+	 * In ascii, A is at 0x41 while a is at 0x61
+	 * That equals 0x20
+	 */
+	return 0x20 + keyboard_scancode_1_to_ascii_letter_uppercase(scan_code);
+
+
+}
 char keyboard_scancode_1_to_ascii_letter_uppercase(unsigned char scan_code)
 {
 
@@ -115,4 +131,5 @@ char keyboard_scancode_1_to_ascii_letter_uppercase(unsigned char scan_code)
 		case KBDSC1_Z_P:
 		return 'Z';
 	}
+
 }
