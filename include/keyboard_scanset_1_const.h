@@ -92,4 +92,7 @@
 //#define KBDSC1_KEYPAD_2_P 0X56
 #define KBDSC1_F11_P 0X57
 #define KBDSC1_F12_P 0X58
+
+#define KBDSC1_LEFT_SHIFT_R 0xaa
+#define KBDSC1_RIGHT_SHIFT_R 0xb6
 #endif
