@@ -1,7 +1,7 @@
 #include "keyboard_ascii_conversion.h"
 #include "keyboard_scanset_1_const.h"
 
-char keyboard_scancode_1_to_number(unsigned char scan_code)
+char keyboard_scancode_1_to_ascii_number(unsigned char scan_code)
 {
 	if(scan_code == KBDSC1_0_P)
 	{
