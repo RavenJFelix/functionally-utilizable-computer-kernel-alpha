@@ -1,0 +1,4 @@
+#ifndef KEYBOARD_ASCII_CONVERSION_RANDOMNESS_STUFF
+#define KEYBOARD_ASCII_CONVERSION_RANDOMNESS_STUFF
+char keyboard_scancode_1_to_ascii_number(unsigned char scan_code);
+#endif
