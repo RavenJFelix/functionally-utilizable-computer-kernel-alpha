@@ -16,20 +16,29 @@ void keyboard_scancode_1_call_pressed_and_released_main(void (*func) (unsigned c
 	(*func)(scan_code + 0x80);
 }
 
-char keyboard_scancode_1_to_top_row_symbols(unsigned char scan_code)
+char keyboard_scancode_1_pressed_to_top_row_symbols(unsigned char scan_code)
 {
 	/* scan set 1 for the number one is 0x02, thus it should be 0
 	 * to access the first element and so forth
 	 */
 	return ascii_number_symbol_set[scan_code - 2];
 }
+
+char keyboard_scancode_1_to_non_top_row_symbols(unsigned char scan_code)
+{
+	switch(scan_code)
+	{
+		case KBDSC1_BACK_TICK_P
+	}
+}
+
 char keyboard_scancode_1_pressed_to_ascii(Keyboard *keyboard, unsigned char scan_code)
 {
 	if(keyboard_scancode_1_is_ascii_number(scan_code))
 	{
 		if(keyboard->caps)
 		{
-			return keyboard_scancode_1_to_top_row_symbols(scan_code);
+			return keyboard_scancode_1_pressed_to_top_row_symbols(scan_code);
 		}
 		else
 		{
