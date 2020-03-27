@@ -62,6 +62,10 @@ bool keyboard_scancode_1_pressed_is_ascii_non_top_row_symbol(unsigned char scan_
 			return true;
 		case KBDSC1_FORWARD_SLASH_P:
 			return true;
+		case KBDSC1_ENTER_P:
+			return true;
+		case KBDSC1_SPACE_P:
+			return true;
 		default:
 			return false;
 	}

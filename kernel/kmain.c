@@ -38,9 +38,9 @@ void kernel_main()
 			{
 				print = keyboard_scancode_1_pressed_to_ascii(&kernel_keyboard, scan_code);
 
-				terminal_vga_print_char(
+				terminal_vga_print(
 						&main_terminal,
-						print	
+						&print	
 						);
 			}
 		}
