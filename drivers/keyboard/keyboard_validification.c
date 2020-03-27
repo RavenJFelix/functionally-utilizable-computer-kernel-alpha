@@ -21,6 +21,7 @@ bool keyboard_scancode_1_is_ascii(unsigned char scan_code)
 	if
 		(keyboard_scancode_1_is_ascii_number(scan_code) 
 		|| keyboard_scancode_1_is_ascii_letter(scan_code)
+		|| keyboard_scancode_1_pressed_is_ascii_non_top_row_symbol(scan_code)
 	  )
 	{
 		return true;
@@ -31,6 +32,40 @@ bool keyboard_scancode_1_is_ascii(unsigned char scan_code)
 	}
 	//Check if scan code is a number scan code
 
+}
+
+bool keyboard_scancode_1_pressed_is_ascii_non_top_row_symbol(unsigned char scan_code)
+{
+	switch(scan_code)
+	{
+		case KBDSC1_BACK_TICK_P:
+			return true;
+		case KBDSC1_MINUS_P:
+			return true;
+		case KBDSC1_EQUAL_P:
+			return true;
+		case KBDSC1_TAB_P:
+			return true;
+		case KBDSC1_LEFT_BRACKET_P:
+			return true;
+		case KBDSC1_RIGHT_BRACKET_P:
+			return true;
+		case KBDSC1_BACKSLASH_P:
+			return true;
+		case KBDSC1_SEMICOLON_P:
+			return true;
+		case KBDSC1_SINGLE_QUOTE_P:
+			return true;
+		case KBDSC1_COMMA_P:
+			return true;
+		case KBDSC1_PERIOD_P:
+			return true;
+		case KBDSC1_FORWARD_SLASH_P:
+			return true;
+		default:
+			return false;
+	}
+	
 }
 
 bool keyboard_scancode_1_is_ascii_number(unsigned char scan_code)
