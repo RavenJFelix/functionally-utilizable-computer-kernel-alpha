@@ -7,6 +7,8 @@
 Terminal main_terminal = {{0,0}, {FB_MAX_COLS, FB_MAX_ROWS}, FB_MATRIX_COLORZ };
 uc_ring_buffer kernel_keyboard_buffer;
 
+unsigned long kernel_page_directory[1024]__attribute__((aligned(4096)));
+
 Keyboard kernel_keyboard;
 
 

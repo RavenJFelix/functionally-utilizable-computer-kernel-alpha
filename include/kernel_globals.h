@@ -9,4 +9,5 @@ extern Terminal main_terminal;
 extern uc_ring_buffer kernel_keyboard_buffer;
 extern unsigned char kernel_keyboard_buffer_data[KERNEL_KEYBOARD_BUFFER_SIZE];
 extern Keyboard kernel_keyboard;
+extern unsigned long kernel_page_directory[1024];
 #endif
