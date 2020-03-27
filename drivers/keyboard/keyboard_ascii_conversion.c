@@ -6,6 +6,9 @@
 const char ascii_row_1_set[] = {"QWERTYUIOP"};
 const char ascii_row_2_set[] = {"ASDFGHJKL"};
 const char ascii_row_3_set[] = {"ZXCVBNM"};
+
+const char ascii_number_symbol_set[] ={"!@#$%^&*()"};
+
 void keyboard_scancode_1_call_pressed_and_released_main(void (*func) (unsigned char), unsigned char scan_code)
 {
 	(*func)(scan_code);
@@ -13,11 +16,25 @@ void keyboard_scancode_1_call_pressed_and_released_main(void (*func) (unsigned c
 	(*func)(scan_code + 0x80);
 }
 
+char keyboard_scancode_1_to_top_row_symbols(unsigned char scan_code)
+{
+	/* scan set 1 for the number one is 0x02, thus it should be 0
+	 * to access the first element and so forth
+	 */
+	return ascii_number_symbol_set[scan_code - 2];
+}
 char keyboard_scancode_1_pressed_to_ascii(Keyboard *keyboard, unsigned char scan_code)
 {
 	if(keyboard_scancode_1_is_ascii_number(scan_code))
 	{
-		return keyboard_scancode_1_pressed_to_ascii_number(scan_code);
+		if(keyboard->caps)
+		{
+			return keyboard_scancode_1_to_top_row_symbols(scan_code);
+		}
+		else
+		{
+			return keyboard_scancode_1_pressed_to_ascii_number(scan_code);
+		}
 	}
 	else if(keyboard_scancode_1_is_ascii_letter(scan_code))
 	{
