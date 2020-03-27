@@ -8,4 +8,7 @@ char keyboard_scancode_1_pressed_to_ascii_letter_lowercase(unsigned char scan_co
 char keyboard_scancode_1_pressed_to_ascii_letter(unsigned char scan_code, bool caps);
 char keyboard_scancode_1_pressed_to_ascii(Keyboard *keyboard, unsigned char scan_code);
 char keyboard_scancode_1_pressed_to_ascii_letter_uppercase(unsigned char scan_code);
+char keyboard_scancode_1_pressed_to_non_top_row_symbols(unsigned char scan_code);
+
+char keyboard_scancode_1_pressed_to_top_row_symbols(unsigned char scan_code);
 #endif
