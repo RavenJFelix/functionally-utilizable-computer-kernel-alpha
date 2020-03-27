@@ -108,18 +108,18 @@ char keyboard_scancode_1_pressed_to_ascii(Keyboard *keyboard, unsigned char scan
 	}
 	else if(keyboard_scancode_1_is_ascii_letter(scan_code))
 	{
+		return keyboard_scancode_1_pressed_to_ascii_letter(scan_code, keyboard->caps);
+	}
+	else
+	{
 		if(keyboard->caps)
 		{
 			return keyboard_scancode_1_pressed_to_non_top_row_symbols_caps(scan_code);
 		}
 		else
 		{
-			return keyboard_scancode_1_pressed_to_ascii_letter(scan_code, keyboard->caps);
+			return keyboard_scancode_1_pressed_to_non_top_row_symbols(scan_code);
 		}
-	}
-	else
-	{
-		return keyboard_scancode_1_pressed_to_non_top_row_symbols(scan_code);
 	}
 }
 
@@ -166,7 +166,7 @@ char keyboard_scancode_1_pressed_to_ascii_letter_lowercase(unsigned char scan_co
 	 * In ascii, A is at 0x41 while a is at 0x61
 	 * That equals 0x20
 	 */
-	return 0x20 + keyboard_scancode_1_pressed_to_ascii_letter_uppercase(scan_code);
+	return (char)(0x20 + keyboard_scancode_1_pressed_to_ascii_letter_uppercase(scan_code));
 
 
 }
