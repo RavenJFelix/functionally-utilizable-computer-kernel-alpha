@@ -24,16 +24,40 @@ char keyboard_scancode_1_pressed_to_top_row_symbols(unsigned char scan_code)
 	return ascii_number_symbol_set[scan_code - 2];
 }
 
-char keyboard_scancode_1_to_non_top_row_symbols(unsigned char scan_code)
+char keyboard_scancode_1_pressed_to_non_top_row_symbols(unsigned char scan_code)
 {
 	switch(scan_code)
 	{
-		case KBDSC1_BACK_TICK_P
+		case KBDSC1_BACK_TICK_P:
+			return '`';
+		case KBDSC1_MINUS_P:
+			return '-';
+		case KBDSC1_EQUAL_P:
+			return '=';
+		case KBDSC1_TAB_P:
+			return '\t';
+		case KBDSC1_LEFT_BRACKET_P:
+			return '[';
+		case KBDSC1_RIGHT_BRACKET_P:
+			return ']';
+		case KBDSC1_BACKSLASH_P:
+			return '\\';
+		case KBDSC1_SEMICOLON_P:
+			return ';';
+		case KBDSC1_SINGLE_QUOTE_P:
+			return '\'';
+		case KBDSC1_COMMA_P:
+			return ',';
+		case KBDSC1_PERIOD_P:
+			return '.';
+		case KBDSC1_FORWARD_SLASH_P:
+			return '/';
 	}
 }
 
 char keyboard_scancode_1_pressed_to_ascii(Keyboard *keyboard, unsigned char scan_code)
 {
+
 	if(keyboard_scancode_1_is_ascii_number(scan_code))
 	{
 		if(keyboard->caps)
@@ -48,6 +72,10 @@ char keyboard_scancode_1_pressed_to_ascii(Keyboard *keyboard, unsigned char scan
 	else if(keyboard_scancode_1_is_ascii_letter(scan_code))
 	{
 		return keyboard_scancode_1_pressed_to_ascii_letter(scan_code, keyboard->caps);
+	}
+	else
+	{
+		return keyboard_scancode_1_pressed_to_non_top_row_symbols(scan_code);
 	}
 }
 
