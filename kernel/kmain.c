@@ -9,14 +9,17 @@
 #include "keyboard_scanset_1_const.h"
 #include "ring_buffer.h"
 #include "memory.h"
+#include "paging.h"
 void kernel_main()
 {
 
 	unsigned long giga = 209612000;
 	//memalloc(giga);
-	kernel_globals_init();	
 	idt_init();
 	keyboard_init();
+	kernel_globals_init();	
+	load_page_directory(kernel_page_directory);
+	enable_paging();
 	char fuck[] = "FUCK\nASDF\nFOIAJEFPAOIJSEFFPAIJSE\0";
 	char testnew[] = "\nHELLO:";
 	
