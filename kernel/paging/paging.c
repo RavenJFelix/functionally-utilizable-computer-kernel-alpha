@@ -1,6 +1,8 @@
 #include "paging.h"
 #include "kernel_globals.h"
+#include "terminal.h"
 
+const char *fuck = {"FUSDFSE\n\0"};
 #define PAGE_FRAME_ADDRESS(i) (FIRST_FRAME_ADDRESS + (i * 0x1000))
 static pageframe_t kalloc_frame_int()
 {
@@ -75,6 +77,7 @@ pageframe_t kcontinuous_alloc(unsigned long number_of_continous_frames)
 	unsigned long index = 0;
 	while(continuous_frames_left > 0)
 	{
+
 		if(index == KERNEL_DYNAMIC_MEMORY_PAGES)
 		{
 			//We've fucked up if this happens
@@ -84,6 +87,7 @@ pageframe_t kcontinuous_alloc(unsigned long number_of_continous_frames)
 		{
 			if(continuous_frames_left == number_of_continous_frames)
 			{
+				terminal_vga_print(&main_terminal, fuck);
 				first_frame = PAGE_FRAME_ADDRESS(index);
 			}
 			else
