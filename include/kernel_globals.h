@@ -7,7 +7,8 @@
 #include "ring_buffer.h"
 #define KERNEL_KEYBOARD_BUFFER_SIZE 256
 #define FIRST_FRAME_OFFSET 0x1000
-#define FIRST_FRAME_ADDRESS (void*) endkernel + FIRST_FRAME_OFFSET
+#define FIRST_FRAME_ADDRESS_UNALIGNED ((endkernel + FIRST_FRAME_OFFSET) % 0x1000)
+#define FIRST_FRAME_ADDRESS (void*) (FIRST_FRAME_ADDRESS_UNALIGNED - (FIRST_FRAME_ADDRESS_UNALIGNED % 0x1000))
 void kernel_globals_init();
 extern Terminal main_terminal;
 extern uc_ring_buffer kernel_keyboard_buffer;

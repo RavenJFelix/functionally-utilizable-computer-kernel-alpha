@@ -13,7 +13,7 @@ void kernel_main()
 {
 
 	unsigned long giga = 209612000;
-	memalloc(giga);
+	//memalloc(giga);
 	kernel_globals_init();	
 	idt_init();
 	keyboard_init();

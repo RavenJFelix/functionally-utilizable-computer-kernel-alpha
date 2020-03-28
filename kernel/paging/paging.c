@@ -3,6 +3,8 @@
 #include "terminal.h"
 
 const char *fuck = {"FUSDFSE\n\0"};
+
+#define NON_ALIGNED_PAGE_FRAME_ADDRESS(i) (FIRST_FRAME_ADDRESS + (i * 0x1000))
 #define PAGE_FRAME_ADDRESS(i) (FIRST_FRAME_ADDRESS + (i * 0x1000))
 void frame_map_init()
 {
