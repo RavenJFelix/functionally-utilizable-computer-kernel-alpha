@@ -1,6 +1,7 @@
 #include "paging.h"
-
 #include "kernel_globals.h"
+
+#define PAGE_FRAME_ADDRESS(i) (FIRST_FRAME_ADDRESS + (i * 0x1000))
 static pageframe_t kalloc_frame_int()
 {
 	unsigned long i = 0;
@@ -55,4 +56,36 @@ void kfree_frame(pageframe_t page_address)
 		index = (unsigned long)((unsigned long)page_address /0x1000);
 	}
 	kernel_frame_map[index] = PAGE_FREE;
+}
+
+pageframe_t kcontinuous_alloc(unsigned long number_of_continous_frames)
+{
+	pageframe_t first_frame;
+
+	unsigned long continuous_frames_left = number_of_continous_frames;
+	unsigned long index = 0;
+	while(continuous_frames_left > 0)
+	{
+		if(index == KERNEL_DYNAMIC_MEMORY_PAGES)
+		{
+			//We've fucked up if this happens
+			return 0;
+		}
+		if(kernel_frame_map[index] == PAGE_FREE)
+		{
+			if(continuous_frames_left == number_of_continous_frames)
+			{
+				first_frame = PAGE_FRAME_ADDRESS(index);
+			}
+			else
+			{
+				--continuous_frames_left;
+			}
+		}
+		else
+		{
+			continuous_frames_left = number_of_continous_frames;
+		}
+	}
+	return first_frame;
 }
