@@ -6,11 +6,14 @@
 #include "keyboard.h"
 #include "ring_buffer.h"
 #define KERNEL_KEYBOARD_BUFFER_SIZE 256
+#define FIRST_FRAME_OFFSET 0x1000
+#define FIRST_FRAME_ADDRESS (void*) endkernel + FIRST_FRAME_OFFSET
 void kernel_globals_init();
 extern Terminal main_terminal;
 extern uc_ring_buffer kernel_keyboard_buffer;
 extern unsigned char kernel_keyboard_buffer_data[KERNEL_KEYBOARD_BUFFER_SIZE];
 extern Keyboard kernel_keyboard;
 extern unsigned long kernel_page_directory[1024];
-extern unsigned char kernel_frabe_map[524288];
+extern unsigned char kernel_frame_map[524288];
+extern unsigned long endkernel;
 #endif
