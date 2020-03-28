@@ -8,8 +8,12 @@
 #include "keyboard_ascii_conversion.h"
 #include "keyboard_scanset_1_const.h"
 #include "ring_buffer.h"
+#include "memory.h"
 void kernel_main()
 {
+
+	unsigned long giga = 209612000;
+	memalloc(giga);
 	kernel_globals_init();	
 	idt_init();
 	keyboard_init();

@@ -10,6 +10,8 @@ void frame_map_init()
 	{
 	kernel_frame_map[i] = PAGE_FREE;
 	}
+	//Ha ha.
+	kernel_frame_map[0] = PAGE_USED;
 }
 static pageframe_t kalloc_frame_int()
 {
@@ -84,7 +86,7 @@ pageframe_t kcontinuous_alloc(unsigned long number_of_continous_frames)
 	unsigned long index = 0;
 	while(!(continuous_frames_left == 0))
 	{
-
+		terminal_vga_print(&main_terminal, fuck);
 		if(index == KERNEL_DYNAMIC_MEMORY_PAGES)
 		{
 			//We've fucked up if this happens
@@ -95,7 +97,6 @@ pageframe_t kcontinuous_alloc(unsigned long number_of_continous_frames)
 			if(continuous_frames_left == number_of_continous_frames)
 			{
 
-				terminal_vga_print(&main_terminal, fuck);
 				first_frame = PAGE_FRAME_ADDRESS(index);
 			}
 			else
@@ -107,6 +108,7 @@ pageframe_t kcontinuous_alloc(unsigned long number_of_continous_frames)
 		{
 			continuous_frames_left = number_of_continous_frames;
 		}
+		++index;
 	}
 	return first_frame;
 }

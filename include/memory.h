@@ -3,4 +3,6 @@
 #include "paging.h"
 
 pageframe_t memalloc(unsigned long amount_of_bytes);
+void memfree(pageframe_t first_address);
+void memfree_cont(pageframe_t first_address, unsigned long amount_of_bytes);
 #endif

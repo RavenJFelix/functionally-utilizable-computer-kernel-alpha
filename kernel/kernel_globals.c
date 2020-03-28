@@ -20,13 +20,16 @@ unsigned char kernel_keyboard_buffer_data[KERNEL_KEYBOARD_BUFFER_SIZE];
 void kernel_globals_init()
 {
 	frame_map_init();
-	unsigned long buffer_size = 100;
-	unsigned long data_size = sizeof(unsigned long) * buffer_size;
+	unsigned long buffer_size = 10000000;
+	unsigned long data_size = sizeof(unsigned char) * buffer_size;
 	const char *error = "fuck";
 
 	unsigned char *test_buffer_data = memalloc(data_size);
+	if(test_buffer_data ==0)
+	{
+		terminal_vga_print(&main_terminal, error);
+	}
 	char c = sizeof(unsigned long);
-	terminal_vga_print_char(&main_terminal, c);
 
 
 	kernel_keyboard_buffer.front = 0;
