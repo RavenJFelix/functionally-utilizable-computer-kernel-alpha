@@ -1,4 +1,4 @@
-#include "paging.h"
+#include "page_frame.h"
 #include "kernel_globals.h"
 #include "terminal.h"
 
