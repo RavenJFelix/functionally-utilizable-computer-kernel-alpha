@@ -4,6 +4,13 @@
 
 const char *fuck = {"FUSDFSE\n\0"};
 #define PAGE_FRAME_ADDRESS(i) (FIRST_FRAME_ADDRESS + (i * 0x1000))
+void frame_map_init()
+{
+	for(unsigned long i = 0; i < KERNEL_DYNAMIC_MEMORY_PAGES; ++i)
+	{
+	kernel_frame_map[i] = PAGE_FREE;
+	}
+}
 static pageframe_t kalloc_frame_int()
 {
 	unsigned long i = 0;
@@ -75,7 +82,7 @@ pageframe_t kcontinuous_alloc(unsigned long number_of_continous_frames)
 
 	unsigned long continuous_frames_left = number_of_continous_frames;
 	unsigned long index = 0;
-	while(continuous_frames_left > 0)
+	while(!(continuous_frames_left == 0))
 	{
 
 		if(index == KERNEL_DYNAMIC_MEMORY_PAGES)
@@ -87,13 +94,14 @@ pageframe_t kcontinuous_alloc(unsigned long number_of_continous_frames)
 		{
 			if(continuous_frames_left == number_of_continous_frames)
 			{
+
 				terminal_vga_print(&main_terminal, fuck);
 				first_frame = PAGE_FRAME_ADDRESS(index);
 			}
 			else
 			{
-				--continuous_frames_left;
 			}
+			--continuous_frames_left;
 		}
 		else
 		{
