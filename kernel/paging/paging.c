@@ -58,6 +58,15 @@ void kfree_frame(pageframe_t page_address)
 	kernel_frame_map[index] = PAGE_FREE;
 }
 
+void kfree_frames(pageframe_t first_page_address, unsigned long total_to_free)
+{
+	for(unsigned long i = 0; i < total_to_free; ++i)
+	{
+		kfree_frame((i * 0x1000) + first_page_address);
+
+	}
+}
+
 pageframe_t kcontinuous_alloc(unsigned long number_of_continous_frames)
 {
 	pageframe_t first_frame;
