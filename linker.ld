@@ -4,25 +4,27 @@ SECTIONS
 {
 	/*pUT SECTIONS AT 1 MiB
 	 It's a cool place to loa */
-	. = 1M;
+	. = 0xC0100000;
+	 _kernel_start = .;
 
-	.text BLOCK(4K) : ALIGN(4K)
+	.text ALIGN(0x1000): AT(ADDR(.text) - 0xC0000000)
 	{
 		*(.multiboot)
 		*(.text)
 	}
 
-	.rodata BLOCK(4K) : ALIGN(4K)
+	.rodata ALIGN(0x1000): AT(ADDR(.rodata) - 0xC0000000)
+
 	{
 		*(.rodata)
 	}
 
-	.data BLOCK(4K) : ALIGN(4K)
+	.data  ALIGN(0x1000):  AT(ADDR(.data) - 0xC0000000)
 	{
 		*(.data)
 	}
 
-	.bss BLOCK(4K) : ALIGN(4K)
+	.bss ALIGN(0x1000): AT(ADDR(.bss) - 0xC0000000)
 	{
 		*(COMMON)
 		*(.bss)
