@@ -5,25 +5,28 @@
 #include "keyboard.h"
 #include "kernel_globals.h"
 #include "keyboard_validification.h"
+#include "vga_cursor.h"
 #include "keyboard_ascii_conversion.h"
 #include "keyboard_scanset_1_const.h"
 #include "ring_buffer.h"
 #include "memory.h"
 #include "paging.h"
+#include "pair2d.h"
 void kernel_main()
 {
 
-	unsigned long giga = 209612000;
-	//memalloc(giga);
+	uc_pair2d pos = {0,10};
+	fb_move_cursor(pos);
 	idt_init();
-	keyboard_init();
 	kernel_globals_init();	
-	load_page_directory(kernel_page_directory);
-	enable_paging();
+	keyboard_init();
 	char fuck[] = "FUCK\nASDF\nFOIAJEFPAOIJSEFFPAIJSE\0";
+	//terminal_vga_print(&main_terminal, fuck);
+	//load_page_directory(kernel_page_directory);
+	//enable_paging();
 	char testnew[] = "\nHELLO:";
 	
-			char print;
+	char print;
 	bool caps = true;
 	while(true)
 	{
@@ -53,7 +56,6 @@ void kernel_main()
 		}
 	}
 	
-	terminal_vga_print(&main_terminal, fuck);
 	//terminal_new_line(&term);
 	
 
