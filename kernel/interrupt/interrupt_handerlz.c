@@ -22,6 +22,7 @@ void irq1_handler()
 	{
 		uc_ring_buffer_enqueue(&kernel_keyboard_buffer, scan_code);
 	}
+	
 	pic_send_eoi();
 }
 
