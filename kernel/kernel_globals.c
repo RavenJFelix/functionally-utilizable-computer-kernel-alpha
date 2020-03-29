@@ -20,7 +20,7 @@ unsigned char kernel_keyboard_buffer_data[KERNEL_KEYBOARD_BUFFER_SIZE];
 void kernel_globals_init()
 {
 	frame_map_init();
-	unsigned long buffer_size = 10000000;
+	unsigned long buffer_size = 10;
 	unsigned long data_size = sizeof(unsigned char) * buffer_size;
 	const char *error = "fuck";
 
