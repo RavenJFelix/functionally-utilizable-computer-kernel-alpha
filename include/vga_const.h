@@ -16,5 +16,5 @@
 //The final memory address that can be written to the fb
 #define FB_MAX_LINE_POS (FB_LINE_POS(79, 24))
 
-#define FRAME_BUFFER_ADR 0x000b8000
+#define FRAME_BUFFER_ADR 0xC00b8000
 #endif
