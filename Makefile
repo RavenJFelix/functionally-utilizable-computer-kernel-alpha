@@ -38,8 +38,8 @@ run: os.iso
 %.o: %.s
 	$(AS) $(ASFLAGS) $< -o $@
 
-boot_sect.bin: boot/boot2.asm boot/disk_load.asm
-	(cd boot; nasm -f bin boot2.asm -o ../$@)
+#boot_sect.bin: boot/boot2.asm boot/disk_load.asm
+#	(cd boot; nasm -f bin boot2.asm -o ../$@)
 	
 clean:
 	rm -rf *.o kernel.elf os.iso kernel.bin
