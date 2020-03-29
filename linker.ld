@@ -5,7 +5,8 @@ SECTIONS
 	/*pUT SECTIONS AT 1 MiB
 	 It's a cool place to loa */
 	. = 0xC0100000;
-	 _kernel_start = .;
+	 _virtual_kernel_start = .;
+	 _physical_kernel_start = .;
 
 	.text ALIGN(0x1000): AT(ADDR(.text) - 0xC0000000)
 	{
@@ -28,6 +29,7 @@ SECTIONS
 	{
 		*(COMMON)
 		*(.bss)
-		endkernel = .;
+		_virtual_kernel_end = .;
+		_physical_kernel_end = .;
 	}
 }

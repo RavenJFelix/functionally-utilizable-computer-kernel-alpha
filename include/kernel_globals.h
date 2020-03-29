@@ -16,5 +16,8 @@ extern unsigned char kernel_keyboard_buffer_data[KERNEL_KEYBOARD_BUFFER_SIZE];
 extern Keyboard kernel_keyboard;
 extern unsigned long kernel_page_directory[1024];
 extern unsigned char kernel_frame_map[524288];
-extern unsigned long endkernel;
+extern unsigned long _physical_kernel_start;
+extern unsigned long _virtual_kernel_start;
+extern unsigned long _physical_kernel_end;
+extern unsigned long _virtual_kernel_end;
 #endif
