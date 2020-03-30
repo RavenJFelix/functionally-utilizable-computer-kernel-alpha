@@ -10,10 +10,9 @@ void frame_map_init()
 {
 	for(unsigned long i = 0; i < KERNEL_DYNAMIC_MEMORY_PAGES; ++i)
 	{
-	kernel_frame_map[i] = PAGE_FREE;
+		kernel_frame_map[i] = PAGE_FREE;
 	}
 	//Ha ha.
-	kernel_frame_map[0] = PAGE_USED;
 }
 static pageframe_t kalloc_frame_int()
 {
