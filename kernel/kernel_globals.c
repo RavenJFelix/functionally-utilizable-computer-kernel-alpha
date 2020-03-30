@@ -10,7 +10,7 @@
 Terminal main_terminal = {{0,0}, {FB_MAX_COLS, FB_MAX_ROWS}, FB_MATRIX_COLORZ };
 uc_ring_buffer kernel_keyboard_buffer;
 
-unsigned char kernel_frame_map[524288];
+unsigned char kernel_frame_map[KERNEL_DYNAMIC_MEMORY_PAGES];
 unsigned long kernel_page_directory[1024]__attribute__((aligned(4096)));
 
 Keyboard kernel_keyboard;
@@ -24,7 +24,7 @@ void kernel_globals_init()
 	unsigned long data_size = sizeof(unsigned char) * buffer_size;
 	const char *error = "fuck";
 
-	unsigned char *test_buffer_data = memalloc(data_size);
+	unsigned char *test_buffer_data  = memalloc(data_size);
 	if(test_buffer_data ==0)
 	{
 		terminal_vga_print(&main_terminal, error);
