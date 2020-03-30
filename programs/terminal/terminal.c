@@ -84,7 +84,7 @@ void terminal_set_cursor(Terminal *terminal, const uc_pair2d *cursor_pos)
 	terminal->cursor_pos = *cursor_pos;
 }
 
-void terminal_print_hex(Terminal *terminal, unsigned long hex_value)
+void terminal_vga_print_hex(Terminal *terminal, unsigned long hex_value)
 {
 	//The hexadecimmal is a 32 bit number, or an 4 byte number
 	//Spanning 8 hexadecimal values
