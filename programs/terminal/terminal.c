@@ -84,3 +84,31 @@ void terminal_set_cursor(Terminal *terminal, const uc_pair2d *cursor_pos)
 	terminal->cursor_pos = *cursor_pos;
 }
 
+void terminal_print_hex(Terminal *terminal, unsigned long hex_value)
+{
+	//The hexadecimmal is a 32 bit number, or an 4 byte number
+	//Spanning 8 hexadecimal values
+	const  char header[] = {"0x\0"};
+	terminal_vga_print(terminal, header);
+	unsigned long mask = 0x0000000f;
+	for(int i = 0; i < 8; ++i)
+	{
+		//Take the 4 left-most values
+		char number = (hex_value >> ((7-i)* 4)) & mask;
+
+		//If within 0-9, display a numerical value
+		if (number <= 9)
+		{
+			number += 0x30 ;//ASCII 0 starts at 0x30
+		}
+		else
+		{
+			number -= 10; //Shift number down so ASCII maps well
+			number += 0x41 ;//A starts at 0x41
+		}
+
+		terminal_vga_print_char(terminal, number);
+	}
+
+}
+
