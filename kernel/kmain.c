@@ -21,6 +21,7 @@ void kernel_main()
 	kernel_globals_init();	
 	keyboard_init();
 	char fuck[] = "FUCK\nASDF\nFOIAJEFPAOIJSEFFPAIJSE\0";
+	terminal_print_hex(&main_terminal, 0x12112344);
 	//terminal_vga_print(&main_terminal, fuck);
 	//load_page_directory(kernel_page_directory);
 	//enable_paging();
