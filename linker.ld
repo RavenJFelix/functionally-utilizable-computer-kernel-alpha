@@ -29,7 +29,8 @@ SECTIONS
 	{
 		*(COMMON)
 		*(.bss)
-		_virtual_kernel_end = .;
-		_physical_kernel_end = . - 0xC0000000;
 	}
+		
+	_virtual_kernel_end = .;
+	_physical_kernel_end = . - 0xC0000000;
 }
