@@ -87,7 +87,6 @@ pageframe_t kcontinuous_alloc(unsigned long number_of_continous_frames)
 	unsigned long index = 0;
 	while(!(continuous_frames_left == 0))
 	{
-		terminal_vga_print(&main_terminal, fuck);
 		if(index == KERNEL_DYNAMIC_MEMORY_PAGES)
 		{
 			//We've fucked up if this happens
@@ -109,7 +108,8 @@ pageframe_t kcontinuous_alloc(unsigned long number_of_continous_frames)
 		{
 			continuous_frames_left = number_of_continous_frames;
 		}
+		terminal_vga_print_hex(&main_terminal, (unsigned long)PAGE_FRAME_ADDRESS(index));
 		++index;
 	}
-	return first_frame;
+	return (pageframe_t)first_frame;
 }
